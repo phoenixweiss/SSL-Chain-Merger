@@ -16,8 +16,4 @@ const certs = certsData
   </main>
 </template>
 
-<style lang="scss" scoped>
-input {
-  font-family: 'Courier New', Courier, monospace;
-}
-</style>
+<style lang="scss" scoped></style>
