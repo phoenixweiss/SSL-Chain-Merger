@@ -26,7 +26,7 @@ function downloadFile(content, fileName, fileExt) {
       <em>This field is required.</em>
     </p>
     <!-- <small>{{ domainName }}</small> -->
-    <div class="grid">
+    <div class="row">
       <textarea
         v-model="certContent"
         :name="cert.name"
@@ -46,8 +46,32 @@ function downloadFile(content, fileName, fileExt) {
 .cert_item {
   margin-bottom: 2rem;
 
-  textarea {
-    font-family: 'Courier New', Courier, monospace;
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    textarea {
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    button {
+      min-width: fit-content;
+      margin-left: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .cert_item {
+    .row {
+      flex-direction: column;
+      align-items: center;
+
+      button {
+        margin: 0 auto;
+      }
+    }
   }
 }
 </style>
