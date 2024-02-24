@@ -1,0 +1,31 @@
+{
+  "name": "ssl-certificate-chain-merger",
+  "version": "0.0.1",
+  "description": "SSL Certificate Chain Merger is an online service that allows you to quickly and easily convert the text parts of the SSL-certificates into the files of the crt, csr and key formats.",
+  "private": false,
+  "repository": "git@github.com:phoenixweiss/SSL-Certificate-Chain-Merger.git",
+  "author": "phoenixweiss <phoenixweiss@ya.ru>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
+  },
+  "dependencies": {
+    "vue": "^3.4.19"
+  },
+  "devDependencies": {
+    "@picocss/pico": "^2.0.3",
+    "@rushstack/eslint-patch": "^1.7.2",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-vue": "^9.21.1",
+    "prettier": "^3.2.5",
+    "sass": "^1.71.1",
+    "vite": "^5.1.4"
+  }
+}

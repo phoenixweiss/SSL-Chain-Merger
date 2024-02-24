@@ -1,0 +1,11 @@
+@use "@picocss/pico/scss/pico" with (
+  // Define the root element used to target <header>, <main>, <footer>
+  // with $enable-semantic-container and $enable-responsive-spacings
+  $semantic-root-element: "#app",
+
+  // Enable <header>, <main>, <footer> inside $semantic-root-element as containers
+  $enable-semantic-container: true,
+
+  // Enable .classes
+  $enable-classes: false
+);
