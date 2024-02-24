@@ -1,6 +1,8 @@
 <script setup>
 const domainName = ref('')
 
+import { isValidDomain } from '@/lib/customValidators.js'
+
 const ariaInvalid = computed(() => {
   if (domainName.value.length === 0) {
     return undefined
@@ -10,16 +12,6 @@ const ariaInvalid = computed(() => {
     return 'true'
   }
 })
-
-function isValidDomain(domain) {
-  const domainPattern = /^[a-zA-Z0-9]+([-.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$/
-
-  if (domain.match(domainPattern)) {
-    return true
-  } else {
-    return false
-  }
-}
 </script>
 
 <template>
