@@ -42,6 +42,6 @@ export const certsData = [
     name: 'csr_code',
     placeholder: 'Enter certificate signing request',
     format: 'csr',
-    required: true
+    required: false
   }
 ]
