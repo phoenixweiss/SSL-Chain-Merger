@@ -2,7 +2,7 @@
 
 <template>
   <header>
-    <div class="container">
+    <div class="navigation">
       <a class="logo" aria-label="SSL Certificate Chain Merger" href="/">
         <h1>SSL Certificate Chain Merger</h1>
       </a>
@@ -12,7 +12,7 @@
 </template>
 
 <style lang="scss" scoped>
-.container {
+.navigation {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
