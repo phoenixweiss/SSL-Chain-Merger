@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
-import MoonIcon from '@/components/svg/icons/MoonIcon.vue'
-import SunIcon from '@/components/svg/icons/SunIcon.vue'
+import MoonIcon from '@/assets/svg/icons/MoonIcon.svg'
+import SunIcon from '@/assets/svg/icons/SunIcon.svg'
 
 const isDarkTheme = ref(false)
 
