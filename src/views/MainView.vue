@@ -1,7 +1,4 @@
 <script setup>
-import CertificateItem from '@/components/CertificateItem.vue'
-import DomainNameField from '@/components/DomainNameField.vue'
-
 import { certsData } from '@/data/certs.js'
 
 const certs = certsData

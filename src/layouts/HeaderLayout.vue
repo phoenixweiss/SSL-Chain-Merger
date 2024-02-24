@@ -1,6 +1,4 @@
-<script setup>
-import ThemeSwitch from '@/components/ThemeSwitch.vue'
-</script>
+<script setup></script>
 
 <template>
   <header>

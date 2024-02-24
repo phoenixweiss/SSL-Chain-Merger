@@ -1,8 +1,4 @@
-<script setup>
-import HeaderLayout from '@/layouts/HeaderLayout.vue'
-import FooterLayout from '@/layouts/FooterLayout.vue'
-import MainView from '@/views/MainView.vue'
-</script>
+<script setup></script>
 
 <template>
   <HeaderLayout />

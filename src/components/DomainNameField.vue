@@ -1,6 +1,4 @@
 <script setup>
-import { ref, computed } from 'vue'
-
 const domainName = ref('')
 
 const ariaInvalid = computed(() => {
@@ -14,7 +12,7 @@ const ariaInvalid = computed(() => {
 })
 
 function isValidDomain(domain) {
-  var domainPattern = /^[a-zA-Z0-9]+([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$/
+  const domainPattern = /^[a-zA-Z0-9]+([-.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$/
 
   if (domain.match(domainPattern)) {
     return true

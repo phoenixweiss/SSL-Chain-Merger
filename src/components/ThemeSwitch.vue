@@ -1,5 +1,4 @@
 <script setup>
-import { ref, computed } from 'vue'
 import MoonIcon from '@/assets/svg/icons/MoonIcon.svg'
 import SunIcon from '@/assets/svg/icons/SunIcon.svg'
 
