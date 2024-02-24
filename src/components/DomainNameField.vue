@@ -1,12 +1,14 @@
 <script setup>
-const domainName = ref('')
+import { useGlobalStore } from '@/stores/global.js'
+
+const store = useGlobalStore()
 
 import { isValidDomain } from '@/lib/customValidators.js'
 
 const ariaInvalidDomainName = computed(() => {
-  if (domainName.value.length === 0) {
+  if (store.domainName.length === 0) {
     return undefined
-  } else if (domainName.value.length > 1 && isValidDomain(domainName.value)) {
+  } else if (store.domainName.length > 1 && isValidDomain(store.domainName)) {
     return 'false'
   } else {
     return 'true'
@@ -17,10 +19,10 @@ const ariaInvalidDomainName = computed(() => {
 <template>
   <input
     class="monospaced"
-    v-model="domainName"
+    v-model="store.domainName"
     type="text"
-    id="domainName"
-    name="domainName"
+    id="store.domainName"
+    name="store.domainName"
     placeholder="Please enter your domain name"
     :aria-invalid="ariaInvalidDomainName"
   />
