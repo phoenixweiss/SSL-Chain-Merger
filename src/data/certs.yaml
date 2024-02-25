@@ -1,0 +1,50 @@
+- id: cert_domain
+  type: cert
+  title: Domain certificate
+  name: domain
+  placeholder: |-
+    -----BEGIN CERTIFICATE-----
+    Enter domain certificate
+    -----END CERTIFICATE-----
+  format: crt
+  required: true
+- id: cert_inter
+  type: cert
+  title: Intermediate CA certificate
+  name: inter
+  placeholder: |-
+    -----BEGIN CERTIFICATE-----
+    Enter intermediate CA certificate
+    -----END CERTIFICATE-----
+  format: crt
+  required: false
+- id: cert_root
+  type: cert
+  title: Root CA certificate
+  name: root
+  placeholder: |-
+    -----BEGIN CERTIFICATE-----
+    Enter root CA certificate
+    -----END CERTIFICATE-----
+  format: crt
+  required: true
+- id: private_key
+  type: key
+  title: Private key
+  name: private
+  placeholder: |-
+    -----BEGIN RSA PRIVATE KEY-----
+    Enter private key
+    -----END RSA PRIVATE KEY-----
+  format: key
+  required: true
+- id: csr_code
+  type: csr
+  title: Certificate signing request
+  name: request
+  placeholder: |-
+    -----BEGIN CERTIFICATE REQUEST-----
+    Enter certificate signing request
+    -----END CERTIFICATE REQUEST-----
+  format: csr
+  required: false

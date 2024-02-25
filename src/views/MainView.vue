@@ -1,6 +1,5 @@
 <script setup>
-import { certsData } from '@/data/certs.js'
-
+import certsData from '@/data/certs.yaml'
 const certs = certsData
 </script>
 
