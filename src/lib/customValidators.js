@@ -4,13 +4,29 @@
  * @param {string} domain - The domain to check.
  * @returns {boolean} - True if the domain is valid, false otherwise.
  */
-function isValidDomain(domain) {
+function isValidDomainName(domain) {
   const domainPattern = /^[a-zA-Z0-9]+([-.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$/
 
   if (domain.match(domainPattern)) {
     return true
   } else {
     return false
+  }
+}
+
+/**
+ * Checks if a given domain is an invalid for ARIA-attributes.
+ *
+ * @param {string} domain - The domain to check.
+ * @returns {boolean|undefined} - True if the domain is an invalid ARIA domain, false if it is a valid, undefined if the domain is empty.
+ */
+function isAriaInvalidDomainName(domain) {
+  if (domain.length === 0) {
+    return undefined
+  } else if (domain.length > 1 && isValidDomainName(domain)) {
+    return false
+  } else {
+    return true
   }
 }
 
@@ -40,4 +56,4 @@ function isValidCertItemText(text, type = 'cert') {
   return pattern.test(text)
 }
 
-export { isValidDomain, isValidCertItemText }
+export { isValidDomainName, isValidCertItemText, isAriaInvalidDomainName }
