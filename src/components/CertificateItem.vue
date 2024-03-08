@@ -75,7 +75,7 @@ function downloadFile(content, fileName, fileExt) {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .cert_item {
   margin-bottom: 2rem;
 
@@ -84,6 +84,11 @@ function downloadFile(content, fileName, fileExt) {
     flex-direction: row;
     align-items: flex-start;
 
+    @media (max-width: 640px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
     .cert_content {
       width: 100%;
     }
@@ -91,30 +96,21 @@ function downloadFile(content, fileName, fileExt) {
     .cert_download {
       margin-left: 1rem;
 
+      @media (max-width: 640px) {
+        margin: 0 auto;
+      }
+
       button {
         min-width: max-content;
         padding: 1rem 2rem;
+
+        @media (max-width: 640px) {
+          margin: 0 auto;
+        }
       }
 
       .caption {
         margin-top: 0.5rem;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .cert_item {
-    .row {
-      flex-direction: column;
-      align-items: center;
-
-      .cert_download {
-        margin: 0 auto;
-
-        button {
-          margin: 0 auto;
-        }
       }
     }
   }

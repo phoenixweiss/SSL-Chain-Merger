@@ -11,7 +11,7 @@
   </header>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .navigation {
   display: flex;
   flex-direction: row;
