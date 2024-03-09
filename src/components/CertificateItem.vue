@@ -10,9 +10,6 @@ defineProps({
     required: true
   }
 })
-
-const certContent = ref('')
-
 </script>
 
 <template>
@@ -25,25 +22,25 @@ const certContent = ref('')
       <div class="cert_content">
         <textarea
           class="monospaced"
-          v-model="certContent"
+          v-model="store.getCertById(cert.id).content"
           :name="cert.name"
           :id="cert.id"
           rows="4"
           :placeholder="cert.placeholder"
           :required="cert.required"
-          :aria-invalid="store.checkAriaInvalidCertContent(certContent, cert.type)"
+          :aria-invalid="store.checkAriaInvalidCertContent(store.getCertById(cert.id).content, cert.type)"
         ></textarea>
-        <small v-if="store.checkAriaInvalidCertContent(certContent, cert.type) === true">Please enter valid data.</small>
+        <small v-if="store.checkAriaInvalidCertContent(store.getCertById(cert.id).content, cert.type) === true">Please enter valid data.</small>
       </div>
       <div class="cert_download">
         <button
-          @click="downloadFile(certContent, `${store.domainName}.${cert.name}`, cert.format)"
-          :disabled="store.checkAriaInvalidCertContent(certContent, cert.type) === true || store.checkAriaInvalidCertContent(certContent, cert.type) == undefined"
+          @click="downloadFile(store.getCertById(cert.id).content, `${store.domainName}.${cert.name}`, cert.format)"
+          :disabled="store.checkAriaInvalidCertContent(store.getCertById(cert.id).content, cert.type) === true || store.checkAriaInvalidCertContent(store.getCertById(cert.id).content, cert.type) === undefined"
         >
           Download in .{{ cert.format }} format
         </button>
-        <div class="caption" v-if="store.checkAriaInvalidCertContent(certContent, cert.type) === false">
-          Expected filename:
+        <div class="caption" v-if="store.checkAriaInvalidCertContent(store.getCertById(cert.id).content, cert.type) === false">
+          Filename:
           <br />
           <code>{{ `${store.domainName}.${cert.name}.${cert.format}` }}</code>
         </div>

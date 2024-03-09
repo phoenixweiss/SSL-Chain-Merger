@@ -21,7 +21,7 @@ function isValidDomainName(domain) {
  * @returns {boolean|undefined} - True if the domain is an invalid ARIA domain, false if it is a valid, undefined if the domain is empty.
  */
 function isAriaInvalidDomainName(domain) {
-  if (domain.length === 0) {
+  if (typeof(domain) != 'string' || domain.length === 0) {
     return undefined
   } else if (domain.length > 1 && isValidDomainName(domain)) {
     return false
@@ -64,7 +64,7 @@ function isValidCertItemText(text, type = 'cert') {
  * @returns {boolean|undefined} - True if the text is an invalid ARIA 'cert', 'csr' or 'key', false if it is a valid, undefined if the text is empty.
  */
 function isAriaInvalidCertContent(text, type = null) {
-  if (text.length === 0) {
+  if (typeof(text) != 'string' || text.length === 0) {
     return undefined
   } else if (text.length > 1 && isValidCertItemText(text, type)) {
     return false
