@@ -1,4 +1,5 @@
 <script setup>
+import { downloadFile } from '@/lib/fileHandlingFunctions'
 import { useGlobalStore } from '@/stores/global'
 
 const store = useGlobalStore()
@@ -12,15 +13,6 @@ defineProps({
 
 const certContent = ref('')
 
-function downloadFile(content, fileName, fileExt) {
-  const blob = new Blob([content], { type: 'text/plain' })
-  const url = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.href = url
-  link.download = `${fileName}.${fileExt}`
-  link.click()
-  URL.revokeObjectURL(url)
-}
 </script>
 
 <template>
