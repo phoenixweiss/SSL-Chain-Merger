@@ -4,12 +4,16 @@ import { useGlobalStore } from '@/stores/global'
 
 const store = useGlobalStore()
 
-defineProps({
+const props = defineProps({
   cert: {
     type: Object,
     required: true
   }
 })
+
+function validateCert() {
+  return store.checkAriaInvalidCertContent(store.getCertById(props.cert.id).content, props.cert.type)
+}
 </script>
 
 <template>
@@ -28,18 +32,18 @@ defineProps({
           rows="4"
           :placeholder="cert.placeholder"
           :required="cert.required"
-          :aria-invalid="store.checkAriaInvalidCertContent(store.getCertById(cert.id).content, cert.type)"
+          :aria-invalid="validateCert()"
         ></textarea>
-        <small v-if="store.checkAriaInvalidCertContent(store.getCertById(cert.id).content, cert.type) === true">Please enter valid data.</small>
+        <small v-if="validateCert() === true">Please enter valid data.</small>
       </div>
       <div class="cert_download">
         <button
           @click="downloadFile(store.getCertById(cert.id).content, `${store.domainName}.${cert.name}`, cert.format)"
-          :disabled="store.checkAriaInvalidCertContent(store.getCertById(cert.id).content, cert.type) === true || store.checkAriaInvalidCertContent(store.getCertById(cert.id).content, cert.type) === undefined"
+          :disabled="validateCert() === true || validateCert() === undefined"
         >
           Download in .{{ cert.format }} format
         </button>
-        <div class="caption" v-if="store.checkAriaInvalidCertContent(store.getCertById(cert.id).content, cert.type) === false">
+        <div class="caption" v-if="validateCert() === false">
           Filename:
           <br />
           <code>{{ `${store.domainName}.${cert.name}.${cert.format}` }}</code>
