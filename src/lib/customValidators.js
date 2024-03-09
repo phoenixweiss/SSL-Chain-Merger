@@ -56,4 +56,21 @@ function isValidCertItemText(text, type = 'cert') {
   return pattern.test(text)
 }
 
-export { isValidDomainName, isValidCertItemText, isAriaInvalidDomainName }
+/**
+ * Checks if a given text is an invalid SSL certificate, CSR request or private key for ARIA-attributes.
+ *
+ * @param {string} text - The text to check.
+ * @param {string} [type=null] - The type of item to check. Possible values: 'cert', 'csr', 'key'.
+ * @returns {boolean|undefined} - True if the text is an invalid ARIA 'cert', 'csr' or 'key', false if it is a valid, undefined if the text is empty.
+ */
+function isAriaInvalidCertContent(text, type = null) {
+  if (text.length === 0) {
+    return undefined
+  } else if (text.length > 1 && isValidCertItemText(text, type)) {
+    return false
+  } else {
+    return true
+  }
+}
+
+export { isValidDomainName, isValidCertItemText, isAriaInvalidDomainName, isAriaInvalidCertContent }

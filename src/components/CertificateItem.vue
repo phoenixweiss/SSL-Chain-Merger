@@ -3,7 +3,7 @@ import { useGlobalStore } from '@/stores/global'
 
 const store = useGlobalStore()
 
-const props = defineProps({
+defineProps({
   cert: {
     type: Object,
     required: true
@@ -11,21 +11,6 @@ const props = defineProps({
 })
 
 const certContent = ref('')
-
-import { isValidCertItemText } from '@/lib/customValidators.js'
-
-const ariaInvalidCertContent = computed(() => {
-  if (certContent.value.length === 0) {
-    return undefined
-  } else if (
-    certContent.value.length > 1 &&
-    isValidCertItemText(certContent.value, props.cert.type)
-  ) {
-    return 'false'
-  } else {
-    return 'true'
-  }
-})
 
 function downloadFile(content, fileName, fileExt) {
   const blob = new Blob([content], { type: 'text/plain' })
@@ -54,18 +39,18 @@ function downloadFile(content, fileName, fileExt) {
           rows="4"
           :placeholder="cert.placeholder"
           :required="cert.required"
-          :aria-invalid="ariaInvalidCertContent"
+          :aria-invalid="store.checkAriaInvalidCertContent(certContent, cert.type)"
         ></textarea>
-        <small v-if="ariaInvalidCertContent == 'true'">Please enter valid data.</small>
+        <small v-if="store.checkAriaInvalidCertContent(certContent, cert.type) === true">Please enter valid data.</small>
       </div>
       <div class="cert_download">
         <button
           @click="downloadFile(certContent, `${store.domainName}.${cert.name}`, cert.format)"
-          :disabled="ariaInvalidCertContent == 'true' || ariaInvalidCertContent == undefined"
+          :disabled="store.checkAriaInvalidCertContent(certContent, cert.type) === true || store.checkAriaInvalidCertContent(certContent, cert.type) == undefined"
         >
           Download in .{{ cert.format }} format
         </button>
-        <div class="caption" v-if="ariaInvalidCertContent == 'false'">
+        <div class="caption" v-if="store.checkAriaInvalidCertContent(certContent, cert.type) === false">
           Expected filename:
           <br />
           <code>{{ `${store.domainName}.${cert.name}.${cert.format}` }}</code>

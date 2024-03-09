@@ -16,7 +16,7 @@ const certs = store.certs
 
     <CertificateItem
       v-for="cert in certs"
-      :key="cert"
+      :key="cert.id"
       :cert="cert"
     ></CertificateItem>
   </main>
