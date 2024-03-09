@@ -4,7 +4,7 @@ import certsData from '@/data/certs.yaml'
 
 export const useGlobalStore = defineStore('global', () => {
   const domainName = ref('')
-  const certs = reactive(certsData)
+  const certs = ref(certsData)
 
   const checkAriaInvalidDomainName = computed(() => {
     return isAriaInvalidDomainName(domainName.value)
@@ -15,7 +15,7 @@ export const useGlobalStore = defineStore('global', () => {
   }
 
   function getCertById(certId) {
-    return certs.find(cert => cert.id === certId);
+    return certs.value.find(cert => cert.id === certId);
   }
 
   return { domainName, checkAriaInvalidDomainName, checkAriaInvalidCertContent, certs, getCertById }
