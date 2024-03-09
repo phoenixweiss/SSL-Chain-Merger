@@ -1,6 +1,9 @@
 <script setup>
-import certsData from '@/data/certs.yaml'
-const certs = certsData
+import { useGlobalStore } from '@/stores/global'
+
+const store = useGlobalStore()
+
+const certs = store.certs
 </script>
 
 <template>
@@ -11,7 +14,11 @@ const certs = certsData
 
     <DomainNameField />
 
-    <CertificateItem v-for="cert in certs" :key="cert.id" :cert="cert"></CertificateItem>
+    <CertificateItem
+      v-for="cert in certs"
+      :key="cert"
+      :cert="cert"
+    ></CertificateItem>
   </main>
 </template>
 

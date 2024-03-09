@@ -1,5 +1,5 @@
 <script setup>
-import { useGlobalStore } from '@/stores/global.js'
+import { useGlobalStore } from '@/stores/global'
 
 const store = useGlobalStore()
 
