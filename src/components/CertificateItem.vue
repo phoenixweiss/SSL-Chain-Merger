@@ -12,7 +12,10 @@ const props = defineProps({
 })
 
 function validateCert() {
-  return store.checkAriaInvalidCertContent(store.getCertById(props.cert.id).content, props.cert.type)
+  return store.checkAriaInvalidCertContent(
+    store.getCertById(props.cert.id).content,
+    props.cert.type
+  )
 }
 </script>
 
@@ -38,7 +41,13 @@ function validateCert() {
       </div>
       <div class="cert_download">
         <button
-          @click="downloadFile(store.getCertById(cert.id).content, `${store.domainName}.${cert.name}`, cert.format)"
+          @click="
+            downloadFile(
+              store.getCertById(cert.id).content,
+              `${store.domainName}.${cert.name}`,
+              cert.format
+            )
+          "
           :disabled="validateCert() === true || validateCert() === undefined"
         >
           Download in .{{ cert.format }} format

@@ -14,11 +14,7 @@ const certs = store.certs
 
     <DomainNameField />
 
-    <CertificateItem
-      v-for="cert in certs"
-      :key="cert.id"
-      :cert="cert"
-    ></CertificateItem>
+    <CertificateItem v-for="cert in certs" :key="cert.id" :cert="cert"></CertificateItem>
   </main>
 </template>
 

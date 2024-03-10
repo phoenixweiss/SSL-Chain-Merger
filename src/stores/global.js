@@ -15,7 +15,7 @@ export const useGlobalStore = defineStore('global', () => {
   }
 
   function getCertById(certId) {
-    return certs.value.find(cert => cert.id === certId);
+    return certs.value.find((cert) => cert.id === certId)
   }
 
   return { domainName, checkAriaInvalidDomainName, checkAriaInvalidCertContent, certs, getCertById }
