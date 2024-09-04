@@ -18,6 +18,12 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 yarn install
 ```
 
+### Keep project up-to-date
+
+```sh
+yarn upgrade-interactive
+```
+
 ### Compile and Hot-Reload for Development
 
 ```sh
