@@ -53,3 +53,9 @@ yarn lint
 ```sh
 yarn format
 ```
+
+### Deploy project to [GitHub Pages](https://pages.github.com/)
+
+```sh
+yarn deploy
+```

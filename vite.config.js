@@ -15,6 +15,9 @@ import viteContent from '@originjs/vite-plugin-content'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // Repo name
+  base: '/SSL-Certificate-Chain-Merger/',
+  // Plugins to load
   plugins: [
     // Vue plugin for handling .vue files
     Vue(),
