@@ -1,6 +1,6 @@
 # SSL Certificate Chain Merger
 
-**SSL Certificate Chain Merger** is an online service that allows you to quickly and easily convert the text parts of the SSL-certificates into the files of the `crt`, `csr` and `key` formats. Just copy the necessary text block in the corresponding field on the service page, select the desired file format and click the "Convert" button. The files obtained can be downloaded to your computer and used to configure the SSL server on the server. **SSL Certificate Chain Merger** is a quick and convenient way to get the necessary files to protect your site.
+**SSL Certificate Chain Merger** is an online service that allows you to quickly and easily convert the text components of SSL certificates into `crt`, `csr`, and `key` file formats. Simply paste the required text into the appropriate field on the service page and click the button to download the corresponding file to use for configuring SSL on your server. **SSL Certificate Chain Merger** provides a fast and convenient way to generate the necessary files to secure your website.
 
 ---
 
