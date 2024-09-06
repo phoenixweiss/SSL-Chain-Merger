@@ -1,32 +1,31 @@
+// Import required Node.js modules for path resolution
 import { fileURLToPath, URL } from 'node:url'
 
+// Import Vite's configuration function
 import { defineConfig } from 'vite'
-import Components from 'unplugin-vue-components/vite'
-import AutoImport from 'unplugin-auto-import/vite'
+
+// Import Vue plugin to handle .vue files
 import Vue from '@vitejs/plugin-vue'
+
+// Import SVG loader to inline SVGs as Vue components
 import svgLoader from 'vite-svg-loader'
+
+// Import content plugin for handling static assets
 import viteContent from '@originjs/vite-plugin-content'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    // Vue plugin for handling .vue files
     Vue(),
-    Components({
-      dirs: ['src/components', 'src/layouts', 'src/views']
-    }),
+    // SVG loader to inline SVGs as Vue components
     svgLoader(),
-    AutoImport({
-      imports: ['vue'],
-      dirs: ['src/stores'],
-      vueTemplate: true,
-      eslintrc: {
-        enabled: true
-      }
-    }),
+    // Content plugin to handle various static content
     viteContent(),
   ],
   resolve: {
     alias: {
+      // Alias '@' to point to the 'src' directory
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   }

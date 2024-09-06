@@ -18,4 +18,4 @@ const certs = store.certs
   </main>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped></style>

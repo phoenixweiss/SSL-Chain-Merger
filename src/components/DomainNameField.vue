@@ -16,3 +16,5 @@ const store = useGlobalStore()
   />
   <small v-if="store.checkAriaInvalidDomainName === true">Please enter valid data.</small>
 </template>
+
+<style lang="scss" scoped></style>
