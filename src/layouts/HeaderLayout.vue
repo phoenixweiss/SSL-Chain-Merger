@@ -1,9 +1,13 @@
-<script setup></script>
+<script setup>
+import { useBaseUrl } from '@/helpers/useBaseUrl'
+
+const baseUrl = useBaseUrl()
+</script>
 
 <template>
   <header>
     <div class="navigation">
-      <a class="logo" aria-label="SSL Certificate Chain Merger" href="/">
+      <a class="logo" aria-label="SSL Certificate Chain Merger" :href="baseUrl">
         <h1>SSL Certificate Chain Merger</h1>
       </a>
       <ThemeSwitch />
