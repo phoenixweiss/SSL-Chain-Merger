@@ -1,7 +1,7 @@
 <script setup>
 import MoonIcon from '@/assets/svg/icons/MoonIcon.svg'
 import SunIcon from '@/assets/svg/icons/SunIcon.svg'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 const isDarkTheme = ref(false)
 
@@ -18,6 +18,16 @@ const toggleTheme = () => {
   }
   isDarkTheme.value = !isDarkTheme.value
 }
+
+// Detect user's system theme preference
+onMounted(() => {
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  isDarkTheme.value = prefersDark
+
+  // Set the initial theme based on user's preference
+  const html = document.querySelector('html')
+  html.setAttribute('data-theme', prefersDark ? 'dark' : 'light')
+})
 </script>
 
 <template>
