@@ -6,28 +6,27 @@ const baseUrl = useBaseUrl()
 
 <template>
   <header>
-    <div class="navigation">
-      <a class="logo" aria-label="SSL Certificate Chain Merger" :href="baseUrl">
-        <h1>SSL Certificate Chain Merger</h1>
-      </a>
-      <ThemeSwitch />
-    </div>
+    <nav>
+      <ul>
+        <li>
+          <a class="logo" aria-label="SSL Chain Merger" :href="baseUrl">
+            <h1>SSL Chain Merger</h1>
+          </a>
+        </li>
+      </ul>
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/about">About</router-link></li>
+        <li>
+          <ThemeSwitch />
+        </li>
+      </ul>
+    </nav>
   </header>
 </template>
 
 <style lang="scss" scoped>
-.navigation {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  a.logo {
-    text-decoration: none;
-
-    h1 {
-      margin: 0;
-    }
-  }
+a.logo {
+  text-decoration: none;
 }
 </style>

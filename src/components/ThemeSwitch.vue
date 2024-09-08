@@ -49,6 +49,8 @@ button.theme_switcher {
   box-shadow: none;
 
   svg {
+    min-width: 24px;
+    min-height: 24px;
     width: 100%;
     height: 100%;
 

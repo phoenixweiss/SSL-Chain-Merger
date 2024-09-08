@@ -8,6 +8,9 @@ import { createPinia } from 'pinia'
 // Import root component
 import App from './App.vue'
 
+// Import vue-router
+import router from './router'
+
 // Create Pinia store instance
 const pinia = createPinia()
 
@@ -44,6 +47,8 @@ const loadComponents = async () => {
 loadComponents().then(() => {
   // Use Pinia for state management
   app.use(pinia)
+  // Use vue-router for routes management
+  app.use(router)
   // Mount the application to the DOM
   app.mount('#app')
 })
