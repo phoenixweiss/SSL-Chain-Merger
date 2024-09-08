@@ -32,6 +32,74 @@ export const useGlobalStore = defineStore('global', () => {
     return certs.value.find((cert) => cert.id === certId)
   }
 
+  // Function to check if all required certificates are filled
+  function areRequiredCertsFilled() {
+    return certs.value.every((cert) => {
+      if (cert.required) {
+        return cert.content !== null && cert.content.trim() !== ''
+      }
+      return true
+    })
+  }
+
+  // Function to check if all required certificates are filled and valid, and the domain name is valid
+  function areCertsValid() {
+    // Check if the domain name is valid
+    if (isAriaInvalidDomainName(domainName.value) || domainName.value.trim() === '') {
+      return false
+    }
+
+    // Check if all required certificates are valid and filled
+    return certs.value.every((cert) => {
+      if (cert.required) {
+        return (
+          cert.content &&
+          cert.content.trim() !== '' &&
+          !isAriaInvalidCertContent(cert.content, cert.type)
+        )
+      }
+      if (cert.content && cert.content.trim() !== '') {
+        return !isAriaInvalidCertContent(cert.content, cert.type)
+      }
+      return true
+    })
+  }
+
+  // Function to get invalid certificates and domain name for error messages
+  function getInvalidCerts() {
+    const invalidCerts = certs.value
+      .filter((cert) => {
+        if (cert.required && (!cert.content || cert.content.trim() === '')) {
+          return true
+        }
+        if (
+          cert.content &&
+          cert.content.trim() !== '' &&
+          isAriaInvalidCertContent(cert.content, cert.type)
+        ) {
+          return true
+        }
+        return false
+      })
+      .map((cert) => cert.title)
+
+    // Check if the domain name is invalid
+    if (isAriaInvalidDomainName(domainName.value) || domainName.value.trim() === '') {
+      invalidCerts.unshift('Domain name')
+    }
+
+    return invalidCerts
+  }
+
   // Return state and functions for use in components
-  return { domainName, checkAriaInvalidDomainName, checkAriaInvalidCertContent, certs, getCertById }
+  return {
+    domainName,
+    checkAriaInvalidDomainName,
+    checkAriaInvalidCertContent,
+    certs,
+    getCertById,
+    areRequiredCertsFilled,
+    areCertsValid,
+    getInvalidCerts
+  }
 })

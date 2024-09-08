@@ -17,6 +17,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "jszip": "^3.10.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.21"
   },

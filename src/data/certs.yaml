@@ -13,7 +13,7 @@
   content: null
   type: cert
   title: Intermediate CA certificate
-  name: inter
+  name: intermediate
   placeholder: |-
     -----BEGIN CERTIFICATE-----
     Enter intermediate CA certificate
