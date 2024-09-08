@@ -1,9 +1,9 @@
 {
-  "name": "ssl-certificate-chain-merger",
+  "name": "ssl-chain-merger",
   "version": "0.0.1",
-  "description": "SSL Certificate Chain Merger is an online service that allows you to quickly and easily convert the text parts of the SSL-certificates into the files of the crt, csr and key formats.",
+  "description": "SSL Chain Merger is an online service that allows you to quickly and easily convert the text parts of the SSL-certificates into the files of the crt, csr and key formats.",
   "private": false,
-  "repository": "git@github.com:phoenixweiss/SSL-Certificate-Chain-Merger.git",
+  "repository": "git@github.com:phoenixweiss/SSL-Chain-Merger.git",
   "author": "phoenixweiss <phoenixweiss@ya.ru>",
   "license": "MIT",
   "type": "module",
