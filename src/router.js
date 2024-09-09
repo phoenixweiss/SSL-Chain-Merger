@@ -8,13 +8,15 @@ const baseUrl = useBaseUrl()
 const routes = [
   {
     path: '/',
-    name: 'main',
     component: () => import('@/views/MainView.vue')
   },
   {
     path: '/about',
-    name: 'about',
-    component: () => import('@/views/AboutView.vue')
+    component: () => import('@/views/MarkdownPage.vue')
+  },
+  {
+    path: '/pages/:file?',
+    component: () => import('@/views/MarkdownPage.vue')
   }
 ]
 
