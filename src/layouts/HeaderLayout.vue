@@ -29,4 +29,13 @@ const baseUrl = useBaseUrl()
 a.logo {
   text-decoration: none;
 }
+
+nav {
+  flex-direction: row;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 </style>
