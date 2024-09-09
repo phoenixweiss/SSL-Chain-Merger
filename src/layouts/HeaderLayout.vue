@@ -9,9 +9,7 @@ const baseUrl = useBaseUrl()
     <nav>
       <ul>
         <li>
-          <a class="logo" aria-label="SSL Chain Merger" :href="baseUrl">
-            SSL Chain Merger
-          </a>
+          <a class="logo" aria-label="SSL Chain Merger" :href="baseUrl"> SSL Chain Merger </a>
         </li>
       </ul>
       <ul>
