@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { useBaseUrl } from '@/helpers/useBaseUrl'
 
 // Get the base URL dynamically using the useBaseUrl helper function
@@ -20,7 +20,7 @@ const routes = [
 
 // Create a Vue Router instance with HTML5 history mode and the defined routes
 const router = createRouter({
-  history: createWebHistory(baseUrl), // Use the base URL for history mode
+  history: createWebHashHistory(baseUrl), // Use the base URL for history mode
   routes // Pass the routes array
 })
 
