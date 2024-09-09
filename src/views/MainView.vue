@@ -8,15 +8,12 @@ const certs = store.certs
 
 <template>
   <main class="container">
-    <h2>Merge SSL certificate chain for domain</h2>
-
+    <h1>Merge SSL certificate chain for domain</h1>
     <hr />
-
     <div class="row">
       <DomainNameField />
       <DownloadFullChain />
     </div>
-
     <CertificateItem v-for="cert in certs" :key="cert.id" :cert="cert"></CertificateItem>
   </main>
 </template>

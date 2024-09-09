@@ -10,7 +10,7 @@ const baseUrl = useBaseUrl()
       <ul>
         <li>
           <a class="logo" aria-label="SSL Chain Merger" :href="baseUrl">
-            <h1>SSL Chain Merger</h1>
+            SSL Chain Merger
           </a>
         </li>
       </ul>
@@ -28,6 +28,8 @@ const baseUrl = useBaseUrl()
 <style lang="scss" scoped>
 a.logo {
   text-decoration: none;
+  font-size: xx-large;
+  font-weight: bolder;
 }
 
 nav {

@@ -21,7 +21,7 @@ function validateCert() {
 
 <template>
   <div class="cert_item">
-    <h3>{{ cert.title }}</h3>
+    <h2>{{ cert.title }}</h2>
     <p v-if="cert.required">
       <em>This field is required to merge complete chain.</em>
     </p>
