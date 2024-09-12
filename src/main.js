@@ -5,6 +5,8 @@ import './assets/main.scss'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
+import i18n from './i18n'
+
 // Import root component
 import App from './App.vue'
 
@@ -14,8 +16,8 @@ import router from './router'
 // Create Pinia store instance
 const pinia = createPinia()
 
-// Create Vue application instance
-const app = createApp(App)
+// Create Vue application instance with I18n support
+const app = i18n(createApp(App))
 
 // Dynamically import all components from specified directories
 const modules = import.meta.glob([

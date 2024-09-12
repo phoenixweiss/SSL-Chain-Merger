@@ -115,7 +115,6 @@ async function downloadFullSSLChain() {
 
   .error-messages {
     margin-top: 1rem;
-    color: red;
   }
 }
 </style>

@@ -17,6 +17,9 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "i18next": "^23.15.1",
+    "i18next-http-backend": "^2.6.1",
+    "i18next-vue": "^5.0.0",
     "jszip": "^3.10.1",
     "markdown-it": "^14.1.0",
     "pinia": "^2.1.7",

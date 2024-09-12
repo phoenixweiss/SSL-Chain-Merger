@@ -11,6 +11,9 @@ const baseUrl = useBaseUrl()
         <li>
           <a class="logo" aria-label="SSL Chain Merger" :href="baseUrl"> SSL Chain Merger </a>
         </li>
+        <li>
+          <LanguageSelector />
+        </li>
       </ul>
       <ul>
         <li><router-link to="/">Home</router-link></li>
