@@ -3,8 +3,15 @@ ui:
   main_header: Merge SSL certificate chain for domain
   cert_item_required: This field is required to merge complete chain.
   cert_item_invalid: Please enter valid data.
-  cert_item_format: 'Download in {{format}} format'
+  cert_item_format: Download in {{format}} format
   cert_item_filename: 'Filename:'
+  domain_name_placeholder: Please enter domain name
+  domain_name_invalid: Please enter valid domain name.
+  chain_download_button: Download full SSL chain
+  chain_merge_checkbox: Merge all certificates
+  chain_invalid_list: 'Please fill in the following fields correctly:'
+  footer_made_with: Made with
+  footer_made_by: and ❤️ by
 pages:
   home: Home
   about: About

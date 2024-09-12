@@ -1,4 +1,4 @@
-import { SUPPORTED_LANGUAGES } from '@/constants'
+import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE } from '@/constants'
 
 import i18next from 'i18next'
 import I18NextVue from 'i18next-vue'
@@ -8,7 +8,7 @@ import yaml from 'js-yaml'
 i18next.use(HttpApi).init({
   debug: true,
   load: 'languageOnly',
-  fallbackLng: 'en',
+  fallbackLng: DEFAULT_LANGUAGE,
   locales: SUPPORTED_LANGUAGES,
 
   backend: {

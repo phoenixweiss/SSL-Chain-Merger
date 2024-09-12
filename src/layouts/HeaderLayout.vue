@@ -19,8 +19,12 @@ const baseUrl = useBaseUrl()
         </li>
       </ul>
       <ul>
-        <li><router-link to="/">{{ $t('pages.home') }}</router-link></li>
-        <li><router-link to="/about">{{ $t('pages.about') }}</router-link></li>
+        <li>
+          <router-link to="/">{{ $t('pages.home') }}</router-link>
+        </li>
+        <li>
+          <router-link to="/about">{{ $t('pages.about') }}</router-link>
+        </li>
         <li>
           <ThemeSwitch />
         </li>

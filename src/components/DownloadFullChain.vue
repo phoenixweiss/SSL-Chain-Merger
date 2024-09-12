@@ -76,14 +76,14 @@ async function downloadFullSSLChain() {
 <template>
   <div class="chain_download">
     <button @click="downloadFullSSLChain" :disabled="!isDownloadButtonEnabled">
-      Download full SSL chain
+      {{ $t('ui.chain_download_button') }}
     </button>
     <label>
       <input type="checkbox" v-model="mergeCertificates" />
-      Merge all certificates
+      {{ $t('ui.chain_merge_checkbox') }}
     </label>
     <div v-if="invalidCerts.length > 0" class="error-messages">
-      <p>Please fill in the following fields correctly:</p>
+      <p>{{ $t('ui.chain_invalid_list') }}</p>
       <ul>
         <li v-for="cert in invalidCerts" :key="cert">{{ cert }}</li>
       </ul>

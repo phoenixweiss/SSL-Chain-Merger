@@ -4,7 +4,7 @@ import { useBaseUrl } from '@/helpers/useBaseUrl'
 // Get the base URL dynamically using the useBaseUrl helper function
 const baseUrl = useBaseUrl()
 
-// Define route configuration with dynamically load components
+// Define route configuration with dynamically loaded components
 const routes = [
   {
     path: '/',
@@ -20,7 +20,7 @@ const routes = [
   }
 ]
 
-// Create a Vue Router instance with HTML5 history mode and the defined routes
+// Create a Vue Router instance with hash history mode and the defined routes
 const router = createRouter({
   history: createWebHashHistory(baseUrl), // Use the base URL for history mode
   routes // Pass the routes array

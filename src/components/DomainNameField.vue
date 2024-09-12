@@ -12,10 +12,12 @@ const store = useGlobalStore()
       type="text"
       id="domain_name"
       name="domain_name"
-      placeholder="Please enter your domain name"
+      :placeholder="$t('ui.domain_name_placeholder')"
       :aria-invalid="store.checkAriaInvalidDomainName"
     />
-    <small v-if="store.checkAriaInvalidDomainName === true">Please enter valid data.</small>
+    <small v-if="store.checkAriaInvalidDomainName === true">{{
+      $t('ui.domain_name_invalid')
+    }}</small>
   </div>
 </template>
 

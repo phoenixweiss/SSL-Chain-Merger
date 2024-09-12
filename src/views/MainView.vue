@@ -8,7 +8,7 @@ const certs = store.certs
 
 <template>
   <main class="container">
-    <h1>{{ $t('ui.main_header')}}</h1>
+    <h1>{{ $t('ui.main_header') }}</h1>
     <hr />
     <div class="row">
       <DomainNameField />
