@@ -1,2 +1,10 @@
 ui:
-  language_selector: "Your language is EN"
+  language_selector: 'Selected language: {{language}}'
+  main_header: Merge SSL certificate chain for domain
+  cert_item_required: This field is required to merge complete chain.
+  cert_item_invalid: Please enter valid data.
+  cert_item_format: 'Download in {{format}} format'
+  cert_item_filename: 'Filename:'
+pages:
+  home: Home
+  about: About

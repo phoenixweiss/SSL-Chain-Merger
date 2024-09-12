@@ -23,7 +23,7 @@ function validateCert() {
   <div class="cert_item">
     <h2>{{ cert.title }}</h2>
     <p v-if="cert.required">
-      <em>This field is required to merge complete chain.</em>
+      <em>{{ $t('ui.cert_item_required') }}</em>
     </p>
     <div class="row">
       <div class="cert_content">
@@ -37,7 +37,7 @@ function validateCert() {
           :required="cert.required"
           :aria-invalid="validateCert()"
         ></textarea>
-        <small v-if="validateCert() === true">Please enter valid data.</small>
+        <small v-if="validateCert() === true">{{ $t('ui.cert_item_invalid') }}</small>
       </div>
       <div class="cert_download">
         <button
@@ -50,10 +50,10 @@ function validateCert() {
           "
           :disabled="validateCert() === true || validateCert() === undefined"
         >
-          Download in .{{ cert.format }} format
+          {{ $t('ui.cert_item_format', { format: cert.format }) }}
         </button>
         <div class="caption" v-if="validateCert() === false">
-          Filename:
+          {{ $t('ui.cert_item_filename') }}
           <br />
           <code>{{ `${store.domainName}.${cert.name}.${cert.format}` }}</code>
         </div>

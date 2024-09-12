@@ -1,9 +1,11 @@
 <script setup>
+import { SUPPORTED_LANGUAGES } from '@/constants'
+
 import { ref, computed } from 'vue'
 import i18next from 'i18next'
 
 const currentLanguage = ref(i18next.language)
-const availableLanguages = computed(() => i18next.options.locales || ['en', 'ru'])
+const availableLanguages = computed(() => i18next.options.locales || SUPPORTED_LANGUAGES)
 
 const changeLanguage = (lang) => {
   i18next.changeLanguage(lang).then(() => {
@@ -14,7 +16,9 @@ const changeLanguage = (lang) => {
 
 <template>
   <details class="dropdown">
-    <summary role="button" class="outline secondary">{{ currentLanguage.toUpperCase() }}</summary>
+    <summary role="button" class="outline secondary">
+      {{ $t('ui.language_selector', { language: currentLanguage.toUpperCase() }) }}
+    </summary>
     <ul>
       <li v-for="lang in availableLanguages" :key="lang">
         <a href="#" @click.prevent="changeLanguage(lang)">{{ lang.toUpperCase() }}</a>

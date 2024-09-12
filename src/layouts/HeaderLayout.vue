@@ -1,4 +1,5 @@
 <script setup>
+import { APP_NAME } from '@/constants'
 import { useBaseUrl } from '@/helpers/useBaseUrl'
 
 const baseUrl = useBaseUrl()
@@ -9,15 +10,17 @@ const baseUrl = useBaseUrl()
     <nav>
       <ul>
         <li>
-          <a class="logo" aria-label="SSL Chain Merger" :href="baseUrl"> SSL Chain Merger </a>
+          <a class="logo" :aria-label="APP_NAME" :href="baseUrl">{{ APP_NAME }}</a>
         </li>
+      </ul>
+      <ul>
         <li>
           <LanguageSelector />
         </li>
       </ul>
       <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/about">About</router-link></li>
+        <li><router-link to="/">{{ $t('pages.home') }}</router-link></li>
+        <li><router-link to="/about">{{ $t('pages.about') }}</router-link></li>
         <li>
           <ThemeSwitch />
         </li>

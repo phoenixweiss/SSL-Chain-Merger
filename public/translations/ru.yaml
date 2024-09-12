@@ -1,2 +1,10 @@
 ui:
-  language_selector: "Ваш язык RU"
+  language_selector: 'Выбран язык: {{language}}'
+  main_header: Объединить цепочку SSL-сертификатов для домена
+  cert_item_required: Это поле обязательно для объединения всей цепочки.
+  cert_item_invalid: Введите валидные данные.
+  cert_item_filename: 'Имя файла:'
+  cert_item_format: Загрузить в формате {{format}}
+pages:
+  home: Главная
+  about: О проекте

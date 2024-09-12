@@ -1,3 +1,5 @@
+import { SUPPORTED_LANGUAGES } from '@/constants'
+
 import i18next from 'i18next'
 import I18NextVue from 'i18next-vue'
 import HttpApi from 'i18next-http-backend'
@@ -7,7 +9,7 @@ i18next.use(HttpApi).init({
   debug: true,
   load: 'languageOnly',
   fallbackLng: 'en',
-  locales: ['en', 'ru'],
+  locales: SUPPORTED_LANGUAGES,
 
   backend: {
     loadPath: `${import.meta.env.BASE_URL}translations/{{lng}}.yaml`,
