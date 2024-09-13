@@ -1,23 +1,20 @@
 // Import global styles
 import './assets/main.scss'
 
-// Import Vue and Pinia
+// Import Vue
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-
-import i18n from './i18n'
 
 // Import root component
 import App from './App.vue'
 
+// Import i18n
+import i18n from './i18n'
+
 // Import vue-router
 import router from './router'
 
-// Create Pinia store instance
-const pinia = createPinia()
-
-// Create Vue application instance with I18n support
-const app = i18n(createApp(App))
+// Create Vue application instance
+const app = createApp(App)
 
 // Dynamically import all components from specified directories
 const modules = import.meta.glob([
@@ -46,9 +43,15 @@ const loadComponents = async () => {
 }
 
 // Load components and then mount the application
-loadComponents().then(() => {
-  // Use Pinia for state management
+loadComponents().then(async () => {
+  // Wait for i18next to be initialized before mounting the app
+  await i18n(app)
+
+  // Now that i18next is initialized, create Pinia store instance
+  const { createPinia } = await import('pinia')
+  const pinia = createPinia()
   app.use(pinia)
+
   // Use vue-router for routes management
   app.use(router)
   // Mount the application to the DOM

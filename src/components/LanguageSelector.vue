@@ -1,23 +1,28 @@
 <script setup>
-import { SUPPORTED_LANGUAGES } from '@/constants'
+import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE } from '@/constants'
+import { useGlobalStore } from '@/stores/global'
+import { computed } from 'vue'
+import { useTranslation } from 'i18next-vue'
 
-import { ref, computed } from 'vue'
-import i18next from 'i18next'
+const globalStore = useGlobalStore()
 
-const currentLanguage = ref(i18next.language)
-const availableLanguages = computed(() => i18next.options.locales || SUPPORTED_LANGUAGES)
+const currentLanguage = computed(() => globalStore.currentLanguage || DEFAULT_LANGUAGE)
+
+const availableLanguages = computed(() => SUPPORTED_LANGUAGES)
+
+const { t } = useTranslation()
+
+console.log('Current language in component:', currentLanguage.value)
 
 const changeLanguage = (lang) => {
-  i18next.changeLanguage(lang).then(() => {
-    currentLanguage.value = lang
-  })
+  globalStore.setLanguage(lang)
 }
 </script>
 
 <template>
   <details class="dropdown">
     <summary role="button" class="outline secondary">
-      {{ $t('ui.language_selector', { language: currentLanguage.toUpperCase() }) }}
+      {{ t('ui.language_selector', { language: currentLanguage.toUpperCase() }) }}
     </summary>
     <ul>
       <li v-for="lang in availableLanguages" :key="lang">

@@ -1,30 +1,33 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { parseMarkdown } from '@/lib/markdownParser'
+import { loadMarkdownContent } from '@/lib/markdownLoader'
+import { useGlobalStore } from '@/stores/global'
 
-const parsedMarkdown = ref('') // Holds the HTML after markdown is parsed
-const route = useRoute() // Accesses current route parameters
+const parsedMarkdown = ref('')
+const route = useRoute()
+const globalStore = useGlobalStore()
 
 /**
- * Loads and parses a markdown file based on the filename.
- * @param {string} fileName - The markdown file to load
+ * Load the markdown file based on the route and language
  */
 const loadMarkdown = async (fileName) => {
-  try {
-    const fileUrl = `${import.meta.env.BASE_URL}pages/${fileName}.md` // Build file URL
-    const response = await fetch(fileUrl) // Fetch the markdown file
-    const markdownText = await response.text() // Get file content as text
-    parsedMarkdown.value = parseMarkdown(markdownText) // Parse and set HTML content
-  } catch (error) {
-    console.error('Error loading markdown file:', error) // Log any errors
-  }
+  parsedMarkdown.value = await loadMarkdownContent(fileName)
 }
 
 // Load the markdown file on component mount
 onMounted(() => {
-  const file = route.params.file || 'About' // Default to 'About.md' if no file is specified
+  const file = route.params.file || 'about' // Default to 'About.md' if no file is specified
   loadMarkdown(file)
+
+  // Watch for language changes in the global store and reload content when the language changes
+  watch(
+    () => globalStore.currentLanguage,
+    () => {
+      const file = route.params.file || 'about'
+      loadMarkdown(file)
+    }
+  )
 })
 
 // Watch for route changes and load the new markdown file
