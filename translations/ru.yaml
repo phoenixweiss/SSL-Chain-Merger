@@ -1,0 +1,17 @@
+ui:
+  language_selector: 'Выбран язык: {{language}}'
+  main_header: Объединить цепочку SSL-сертификатов для домена
+  cert_item_required: Это поле обязательно для объединения всей цепочки.
+  cert_item_invalid: Введите валидные данные.
+  cert_item_filename: 'Имя файла:'
+  cert_item_format: Загрузить в формате {{format}}
+  domain_name_placeholder: Пожалуйста, введите доменное имя
+  domain_name_invalid: Пожалуйста, введите валидное имя домена.
+  chain_download_button: Скачать полную цепочку SSL
+  chain_merge_checkbox: Объединить все сертификаты
+  chain_invalid_list: 'Пожалуйста, правильно заполните следующие поля:'
+  footer_made_with: Сделано при помощи
+  footer_made_by: и с ❤️ от
+pages:
+  home: Главная
+  about: О проекте
