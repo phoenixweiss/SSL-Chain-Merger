@@ -74,10 +74,10 @@ export const useGlobalStore = defineStore('global', () => {
         }
         return false
       })
-      .map((cert) => cert.title)
+      .map((cert) => `certs.${cert.id}.title`)
 
     if (isAriaInvalidDomainName(domainName.value) || domainName.value.trim() === '') {
-      invalidCerts.unshift('Domain name')
+      invalidCerts.unshift('ui.domain_name')
     }
 
     return invalidCerts

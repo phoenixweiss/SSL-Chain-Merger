@@ -61,3 +61,9 @@ yarn format
 ```sh
 yarn deploy
 ```
+
+### List project structure using `tree`
+
+```sh
+tree -I 'node_modules|dist'
+```

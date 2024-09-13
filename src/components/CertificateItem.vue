@@ -21,7 +21,7 @@ function validateCert() {
 
 <template>
   <div class="cert_item">
-    <h2>{{ cert.title }}</h2>
+    <h2>{{ $t(`certs.${cert.id}.title`) }}</h2>
     <p v-if="cert.required">
       <em>{{ $t('ui.cert_item_required') }}</em>
     </p>
@@ -33,7 +33,7 @@ function validateCert() {
           :name="cert.name"
           :id="cert.id"
           rows="4"
-          :placeholder="cert.placeholder"
+          :placeholder="$t(`certs.${cert.id}.placeholder`)"
           :required="cert.required"
           :aria-invalid="validateCert()"
         ></textarea>

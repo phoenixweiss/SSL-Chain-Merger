@@ -85,7 +85,7 @@ async function downloadFullSSLChain() {
     <div v-if="invalidCerts.length > 0" class="error-messages">
       <p>{{ $t('ui.chain_invalid_list') }}</p>
       <ul>
-        <li v-for="cert in invalidCerts" :key="cert">{{ cert }}</li>
+        <li v-for="certKey in invalidCerts" :key="certKey">{{ $t(certKey) }}</li>
       </ul>
     </div>
   </div>

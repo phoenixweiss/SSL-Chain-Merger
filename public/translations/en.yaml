@@ -1,4 +1,6 @@
 ui:
+  domain_name: 'Domain Name'
+  chain_invalid_list: 'Please fill in the following fields correctly:'
   language_selector: 'Selected language: {{language}}'
   main_header: Merge SSL certificate chain for domain
   cert_item_required: This field is required to merge complete chain.
@@ -9,9 +11,39 @@ ui:
   domain_name_invalid: Please enter valid domain name.
   chain_download_button: Download full SSL chain
   chain_merge_checkbox: Merge all certificates
-  chain_invalid_list: 'Please fill in the following fields correctly:'
   footer_made_with: Made with
   footer_made_by: and ❤️ by
 pages:
   home: Home
   about: About
+certs:
+  cert_domain:
+    title: Domain certificate
+    placeholder: |-
+      -----BEGIN CERTIFICATE-----
+      Enter domain certificate
+      -----END CERTIFICATE-----
+  cert_inter:
+    title: Intermediate certificate
+    placeholder: |-
+      -----BEGIN CERTIFICATE-----
+      Enter intermediate certificate
+      -----END CERTIFICATE-----
+  cert_root:
+    title: Root certificate
+    placeholder: |-
+      -----BEGIN CERTIFICATE-----
+      Enter root certificate
+      -----END CERTIFICATE-----
+  private_key:
+    title: Private key
+    placeholder: |-
+      -----BEGIN RSA PRIVATE KEY-----
+      Enter private key
+      -----END RSA PRIVATE KEY-----
+  csr_code:
+    title: Certificate signing request
+    placeholder: |-
+      -----BEGIN CERTIFICATE REQUEST-----
+      Enter certificate signing request
+      -----END CERTIFICATE REQUEST-----
