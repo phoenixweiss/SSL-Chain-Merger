@@ -12,6 +12,38 @@ ui:
   chain_invalid_list: 'Пожалуйста, правильно заполните следующие поля:'
   footer_made_with: Сделано при помощи
   footer_made_by: и с ❤️ от
+  domain_name: Доменное имя
 pages:
   home: Главная
   about: О проекте
+certs:
+  cert_domain:
+    placeholder: |-
+      -----BEGIN CERTIFICATE-----
+      Введите сертификат домена
+      -----END CERTIFICATE-----
+    title: Сертификат домена
+  cert_inter:
+    placeholder: |-
+      -----BEGIN CERTIFICATE-----
+      Введите промежуточный сертификат
+      -----END CERTIFICATE-----
+    title: Промежуточный сертификат
+  cert_root:
+    placeholder: |-
+      -----BEGIN CERTIFICATE-----
+      Введите корневой сертификат
+      -----END CERTIFICATE-----
+    title: Корневой сертификат
+  csr_code:
+    placeholder: |-
+      -----BEGIN CERTIFICATE REQUEST-----
+      Введите запрос на подпись сертификата
+      -----END CERTIFICATE REQUEST-----
+    title: Запрос на подпись сертификата
+  private_key:
+    placeholder: |-
+      -----BEGIN RSA PRIVATE KEY-----
+      Введите закрытый ключ
+      -----END RSA PRIVATE KEY-----
+    title: Закрытый ключ
