@@ -38,6 +38,11 @@ a.logo {
   text-decoration: none;
   font-size: xx-large;
   font-weight: bolder;
+
+  @media (max-width: 640px) {
+    font-size: x-large;
+    text-align: center;
+  }
 }
 
 nav {
