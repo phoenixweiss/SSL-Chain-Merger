@@ -7,12 +7,8 @@ import { useTranslation } from 'i18next-vue'
 const globalStore = useGlobalStore()
 
 const currentLanguage = computed(() => globalStore.currentLanguage || DEFAULT_LANGUAGE)
-
 const availableLanguages = computed(() => SUPPORTED_LANGUAGES)
-
 const { t } = useTranslation()
-
-console.log('Current language in component:', currentLanguage.value)
 
 const changeLanguage = (lang) => {
   globalStore.setLanguage(lang)

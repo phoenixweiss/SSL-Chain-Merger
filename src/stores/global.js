@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-import { isAriaInvalidDomainName, isAriaInvalidCertContent } from '@/lib/customValidators'
-import certsData from '@/data/certs.yaml'
 import { ref, computed } from 'vue'
 import i18next from 'i18next'
 import { DEFAULT_LANGUAGE } from '@/constants'
+import { isAriaInvalidDomainName, isAriaInvalidCertContent } from '@/lib/customValidators'
+import certsData from '@/data/certs.yaml'
 
 export const useGlobalStore = defineStore('global', () => {
   const domainName = ref('')
@@ -44,7 +44,6 @@ export const useGlobalStore = defineStore('global', () => {
     if (isAriaInvalidDomainName(domainName.value) || domainName.value.trim() === '') {
       return false
     }
-
     return certs.value.every((cert) => {
       if (cert.required) {
         return (
