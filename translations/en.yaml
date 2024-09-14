@@ -1,18 +1,19 @@
 ui:
-  domain_name: 'Domain Name'
-  chain_invalid_list: 'Please fill in the following fields correctly:'
   language_selector: 'Selected language: {{language}}'
+  domain_name: 'Domain Name'
+  domain_name_placeholder: Please enter domain name
+  domain_name_invalid: Please enter valid domain name.
   main_header: Merge SSL certificate chain for domain
   cert_item_required: This field is required to merge complete chain.
   cert_item_invalid: Please enter valid data.
-  cert_item_format: Download in {{format}} format
   cert_item_filename: 'Filename:'
-  domain_name_placeholder: Please enter domain name
-  domain_name_invalid: Please enter valid domain name.
+  cert_item_format: Download in {{format}} format
   chain_download_button: Download full SSL chain
   chain_merge_checkbox: Merge all certificates
-  footer_made_with: Made with
-  footer_made_by: and ❤️ by
+  chain_invalid_list: 'Please fill in the following fields correctly:'
+  footer:
+    made_with: Made with
+    made_by: and ❤️ by
 pages:
   home: Home
   about: About
