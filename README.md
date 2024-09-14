@@ -8,13 +8,21 @@
 
 ## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar).
 
-### Customize configuration
+### Prerequisites
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- [Node.js](https://nodejs.org/) `~> 20.11.1`
+- [Yarn](https://yarnpkg.com/) `~> 1.22.22`
 
-### Project Setup
+### Clone the repo
+
+```sh
+git clone git@github.com:phoenixweiss/SSL-Chain-Merger.git
+cd SSL-Chain-Merger
+```
+
+### Install the dependencies
 
 ```sh
 yarn install
@@ -67,3 +75,23 @@ yarn deploy
 ```sh
 tree -I 'node_modules|dist'
 ```
+
+## Technologies Used
+
+- **Vue 3** - The core framework for building the user interface.
+- **Pinia** - For state management.
+- **Vite** - For fast development and build process.
+- etc
+
+## Future Plans
+
+- Refactoring and updates.
+- Implement offline support with Electron.
+
+## Contribution
+
+Feel free to contribute by submitting issues or pull requests. Any feedback and suggestions are welcome.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
