@@ -18,7 +18,7 @@ const certs = store.certs
   </main>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .row {
   display: flex;
   flex-direction: row;

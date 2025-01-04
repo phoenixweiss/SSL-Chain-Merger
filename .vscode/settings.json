@@ -1,0 +1,21 @@
+{
+  "cSpell.words": [
+    "fullchain",
+    "jszip",
+    "languagedetector",
+    "Lngs",
+    "originjs"
+  ],
+  "i18n-ally.localesPaths": [
+    "public/translations"
+  ],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.enabledFrameworks": [
+    "vue",
+    "i18next"
+  ],
+  "i18n-ally.fullReloadOnChanged": true,
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.displayLanguage": "en",
+  "i18n-ally.readonly": false
+}

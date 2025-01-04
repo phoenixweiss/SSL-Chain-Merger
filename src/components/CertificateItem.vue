@@ -62,7 +62,7 @@ function validateCert() {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .cert_item {
   margin-bottom: 2rem;
 

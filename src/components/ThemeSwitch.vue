@@ -37,7 +37,7 @@ onMounted(() => {
   </button>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 button.theme_switcher {
   background: none;
   border: none;

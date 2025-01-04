@@ -2,7 +2,7 @@
 
 <template>
   <HeaderLayout />
-  <router-view></router-view>
+  <RouterView></RouterView>
   <FooterLayout />
 </template>
 

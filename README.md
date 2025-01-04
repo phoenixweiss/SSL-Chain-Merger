@@ -8,11 +8,12 @@
 
 ## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar).
+- [VSCode](https://code.visualstudio.com/)
+- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar).
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) `~> 20.11.1`
+- [Node.js](https://nodejs.org/) `~> 22.12.0`
 - [Yarn](https://yarnpkg.com/) `~> 1.22.22`
 
 ### Clone the repo

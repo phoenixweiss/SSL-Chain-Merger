@@ -20,10 +20,10 @@ const baseUrl = useBaseUrl()
       </ul>
       <ul>
         <li>
-          <router-link to="/">{{ $t('pages.home') }}</router-link>
+          <RouterLink to="/">{{ $t('pages.home') }}</RouterLink>
         </li>
         <li>
-          <router-link to="/about">{{ $t('pages.about') }}</router-link>
+          <RouterLink to="/about">{{ $t('pages.about') }}</RouterLink>
         </li>
         <li>
           <ThemeSwitch />
@@ -33,7 +33,7 @@ const baseUrl = useBaseUrl()
   </header>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 a.logo {
   text-decoration: none;
   font-size: xx-large;

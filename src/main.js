@@ -1,26 +1,26 @@
 // Import global styles
-import './assets/main.scss'
+import '@/assets/main.scss'
 
 // Import Vue
 import { createApp } from 'vue'
 
 // Import root component
-import App from './App.vue'
+import App from '@/App.vue'
 
 // Import i18n
-import i18n from './i18n'
+import i18n from '@/i18n'
 
 // Import vue-router
-import router from './router'
+import router from '@/router'
 
 // Create Vue application instance
 const app = createApp(App)
 
 // Dynamically import all components from specified directories
 const modules = import.meta.glob([
-  './components/**/*.vue',
-  './layouts/**/*.vue',
-  './views/**/*.vue'
+  '@/components/**/*.vue',
+  '@/layouts/**/*.vue',
+  '@/views/**/*.vue'
 ])
 
 // Function to load and register components globally

@@ -28,4 +28,4 @@ const changeLanguage = (lang) => {
   </details>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss"></style>

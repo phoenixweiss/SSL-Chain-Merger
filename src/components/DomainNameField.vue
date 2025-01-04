@@ -21,7 +21,7 @@ const store = useGlobalStore()
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .domain_content {
   width: 100%;
 }

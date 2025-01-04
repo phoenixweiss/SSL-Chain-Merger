@@ -91,7 +91,7 @@ async function downloadFullSSLChain() {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .chain_download {
   margin-left: 1rem;
 
