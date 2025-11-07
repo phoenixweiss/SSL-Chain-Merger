@@ -4,7 +4,10 @@
     "jszip",
     "languagedetector",
     "Lngs",
-    "originjs"
+    "originjs",
+    "pico",
+    "picocss",
+    "rushstack"
   ],
   "i18n-ally.localesPaths": [
     "public/translations"
