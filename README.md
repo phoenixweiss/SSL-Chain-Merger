@@ -82,7 +82,10 @@ tree -I 'node_modules|dist'
 - **Vue 3** - The core framework for building the user interface.
 - **Pinia** - For state management.
 - **Vite** - For fast development and build process.
-- etc
+- **sass** - Version 1.93.3 - CSS preprocessor for styling.
+- **@picocss/pico** - Version 2.1.1 - Minimal CSS framework for semantic HTML.
+- **i18next** - Internationalization framework.
+- **jszip** - Library for creating, reading and editing .zip files.
 
 ## Future Plans
 
