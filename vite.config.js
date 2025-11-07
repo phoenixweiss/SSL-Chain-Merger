@@ -24,7 +24,7 @@ export default defineConfig({
     // SVG loader to inline SVGs as Vue components
     svgLoader(),
     // Content plugin to handle various static content
-    viteContent(),
+    viteContent()
   ],
   resolve: {
     alias: {
