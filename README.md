@@ -96,6 +96,10 @@ tree -I 'node_modules|dist'
 
 Feel free to contribute by submitting issues or pull requests. Any feedback and suggestions are welcome.
 
+## Author
+
+Created and maintained by [Pavel Tkachev (@phoenixweiss)](https://github.com/phoenixweiss).
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
