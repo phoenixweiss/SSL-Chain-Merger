@@ -14,7 +14,11 @@
     "deploy": "gh-pages -d dist",
     "preview": "vite preview",
     "lint": "yarn run eslint .",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "format:check": "prettier --check src public/pages public/translations README.md CHANGELOG.md index.html playwright.config.js tests",
+    "test": "yarn run test:browser",
+    "test:browser": "yarn build && playwright test",
+    "quality": "yarn lint && yarn format:check && yarn test"
   },
   "dependencies": {
     "i18next": "^23.15.1",
@@ -31,6 +35,7 @@
     "@eslint/js": "^9.9.1",
     "@originjs/vite-plugin-content": "^1.0.5",
     "@picocss/pico": "^2.0.6",
+    "@playwright/test": "^1.62.1",
     "@rushstack/eslint-patch": "^1.7.2",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/eslint-config-prettier": "^9.0.0",
