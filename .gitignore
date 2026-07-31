@@ -32,9 +32,6 @@ AGENTS.md
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-/cypress/videos/
-/cypress/screenshots/
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

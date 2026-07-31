@@ -15,8 +15,9 @@
     "preview": "vite preview",
     "lint": "yarn run eslint .",
     "format": "prettier --write src/",
-    "format:check": "prettier --check src public/pages public/translations README.md CHANGELOG.md index.html playwright.config.js tests",
-    "test": "yarn run test:browser",
+    "format:check": "prettier --check .github package.json src public/pages public/translations README.md CHANGELOG.md index.html playwright.config.js tests",
+    "test": "yarn run test:localization && yarn run test:browser",
+    "test:localization": "node tests/localization/checkTranslations.js",
     "test:browser": "yarn build && playwright test",
     "quality": "yarn lint && yarn format:check && yarn test"
   },
