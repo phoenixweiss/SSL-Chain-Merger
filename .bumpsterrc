@@ -1,0 +1,20 @@
+# Bumpster configuration file
+
+# Release and development branches
+GIT_MASTER_BRANCH="main"
+GIT_DEVELOP_BRANCH="dev"
+
+# Keep release logging disabled unless a troubleshooting session needs it
+ENABLE_LOGGING="false"
+LOG_FILE="bumpster.log"
+
+# Preserve feature branches unless their removal is explicitly confirmed
+DELETE_FEATURE_BRANCH_AFTER_MERGE="false"
+ASK_BEFORE_DELETING_FEATURE_BRANCH="true"
+
+# Keep VERSION and the root package.json version synchronized
+SYNC_WITH_PACKAGE_JSON="true"
+
+# Releases start from and return to the development branch
+AFTER_BUMP_BRANCH="dev"
+BEFORE_BUMP_BRANCH="dev"
