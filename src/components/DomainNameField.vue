@@ -14,6 +14,10 @@ const store = useGlobalStore()
       name="domain_name"
       :placeholder="$t('ui.domain_name_placeholder')"
       :aria-invalid="store.checkAriaInvalidDomainName"
+      autocomplete="off"
+      autocapitalize="none"
+      autocorrect="off"
+      spellcheck="false"
     />
     <small v-if="store.checkAriaInvalidDomainName === true">{{
       $t('ui.domain_name_invalid')

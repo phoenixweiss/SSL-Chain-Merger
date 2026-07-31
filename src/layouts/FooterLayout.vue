@@ -10,8 +10,10 @@
       <a href="https://pinia.vuejs.org/" target="_blank">Pinia</a>,
       <a href="https://stuk.github.io/jszip/" target="_blank">JSZip</a>
       {{ $t('ui.footer.made_by') }}
-      <a href="https://phoenixweiss.me" target="_blank"><em>phoenixweiss</em></a
-      >.
+      <a href="https://phoenixweiss.me" target="_blank" rel="noreferrer">
+        {{ $t('ui.footer.author') }}
+        <em>({{ $t('ui.footer.handle') }})</em>
+      </a>
     </small>
   </footer>
 </template>

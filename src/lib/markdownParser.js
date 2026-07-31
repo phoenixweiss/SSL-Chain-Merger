@@ -1,11 +1,11 @@
 import MarkdownIt from 'markdown-it'
 
 /**
- * Initializes the MarkdownIt parser with options to allow HTML,
- * automatically convert links, and enhance typography.
+ * Initializes the MarkdownIt parser with raw HTML disabled,
+ * automatic link conversion, and enhanced typography.
  */
 const md = new MarkdownIt({
-  html: true, // Enable HTML tags in markdown
+  html: false, // Keep tracked Markdown content inside the parser's safe output boundary
   linkify: true, // Automatically convert URLs to clickable links
   typographer: true // Enable smart typographic replacements
 })

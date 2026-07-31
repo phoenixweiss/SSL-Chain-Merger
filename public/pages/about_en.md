@@ -1,3 +1,9 @@
 # About
 
-**SSL Chain Merger** is an online service that allows you to quickly and easily convert the text components of SSL certificates into `crt`, `csr`, and `key` file formats. Simply paste the required text into the appropriate field on the service page and click the button to download the corresponding file to use for configuring SSL on your server. **SSL Chain Merger** provides a fast and convenient way to generate the necessary files to secure your website.
+**SSL Chain Merger** is a browser-based tool for packaging PEM-encoded certificate components into individual `crt`, `csr`, and `key` files or a downloadable ZIP archive. Paste the required text into the matching fields and download the files for your server configuration.
+
+## Privacy and validation limits
+
+The domain name, certificates, CSR, and private key remain in memory in the current browser tab. They are not uploaded, logged, or saved by the application. The app includes no analytics, telemetry, or crash reporting; only the selected language and theme preferences are stored locally.
+
+The current validation checks the expected PEM boundary markers and basic domain-name syntax. It does not parse or cryptographically verify certificates, establish chain trust, or confirm that a private key and CSR match the domain certificate. Review generated files with appropriate certificate tooling before using them in production.

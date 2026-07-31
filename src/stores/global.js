@@ -1,22 +1,25 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import i18next from 'i18next'
-import { DEFAULT_LANGUAGE } from '@/constants'
+import { DEFAULT_LANGUAGE, normalizeLanguage } from '@/constants'
 import { isAriaInvalidDomainName, isAriaInvalidCertContent } from '@/lib/customValidators'
 import certsData from '@/data/certs.yaml'
 
 export const useGlobalStore = defineStore('global', () => {
   const domainName = ref('')
   const certs = ref(certsData)
-  const currentLanguage = ref(i18next.language || DEFAULT_LANGUAGE)
+  const currentLanguage = ref(
+    normalizeLanguage(i18next.resolvedLanguage || i18next.language || DEFAULT_LANGUAGE)
+  )
 
   function setLanguage(lang) {
-    currentLanguage.value = lang
-    i18next.changeLanguage(lang)
+    const normalizedLanguage = normalizeLanguage(lang)
+    currentLanguage.value = normalizedLanguage
+    i18next.changeLanguage(normalizedLanguage)
   }
 
   i18next.on('languageChanged', (lang) => {
-    currentLanguage.value = lang
+    currentLanguage.value = normalizeLanguage(lang)
   })
 
   const checkAriaInvalidDomainName = computed(() => {

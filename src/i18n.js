@@ -1,23 +1,28 @@
-import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE } from '@/constants'
+import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE, normalizeLanguage } from '@/constants'
 import i18next from 'i18next'
 import I18NextVue from 'i18next-vue'
 import HttpApi from 'i18next-http-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import yaml from 'js-yaml'
 
+const syncDocumentLanguage = (language) => {
+  document.documentElement.lang = normalizeLanguage(language)
+}
+
+i18next.on('languageChanged', syncDocumentLanguage)
+
 i18next
   .use(HttpApi)
   .use(LanguageDetector)
   .init({
-    debug: true,
+    debug: import.meta.env.DEV,
     load: 'languageOnly',
     fallbackLng: DEFAULT_LANGUAGE,
     supportedLngs: SUPPORTED_LANGUAGES,
     detection: {
-      order: ['querystring', 'localStorage', 'cookie', 'navigator', 'htmlTag'],
-      caches: ['localStorage', 'cookie'],
-      cookieMinutes: 60 * 24,
-      cookieDomain: window.location.hostname
+      order: ['querystring', 'localStorage', 'navigator', 'htmlTag'],
+      caches: ['localStorage'],
+      convertDetectedLanguage: normalizeLanguage
     },
     backend: {
       loadPath: `${import.meta.env.BASE_URL}translations/{{lng}}.yaml`,

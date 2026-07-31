@@ -2,6 +2,12 @@ import { parseMarkdown } from '@/lib/markdownParser'
 import i18next from 'i18next'
 import { DEFAULT_LANGUAGE } from '@/constants'
 
+const warnInDevelopment = (...args) => {
+  if (import.meta.env.DEV) {
+    console.warn(...args)
+  }
+}
+
 /**
  * Attempts to load and parse a markdown file based on the filename and language.
  * Tries to load the localized version first, and if not found, tries to load the universal file.
@@ -25,7 +31,6 @@ export const loadMarkdownContent = async (fileName) => {
 
   for (const variant of fileVariants) {
     const fileUrl = `${import.meta.env.BASE_URL}pages/${variant}`
-    console.log(`Trying to load file: ${fileUrl}`) // Log the file URL
 
     try {
       const response = await fetch(fileUrl)
@@ -37,17 +42,17 @@ export const loadMarkdownContent = async (fileName) => {
           const markdownText = await response.text()
           return parseMarkdown(markdownText) // Parse and return HTML content
         } else {
-          console.warn(`Unexpected content-type: ${contentType}`)
+          warnInDevelopment(`Unexpected content-type for ${variant}: ${contentType}`)
           continue // Try the next variant if the content is not markdown
         }
       } else if (response.status === 404) {
-        console.warn(`File not found: ${variant} (404)`)
+        warnInDevelopment(`Markdown file not found: ${variant} (404)`)
         continue // Continue to next variant if file is not found
       } else {
-        console.warn(`Failed to load ${variant}. Response status: ${response.status}`)
+        warnInDevelopment(`Failed to load ${variant}. Response status: ${response.status}`)
       }
     } catch (error) {
-      console.error(`Error loading ${variant}:`, error)
+      warnInDevelopment(`Error loading ${variant}:`, error)
     }
   }
 

@@ -4,6 +4,10 @@ ui:
   domain_name_placeholder: Please enter domain name
   domain_name_invalid: Please enter valid domain name.
   main_header: Merge SSL certificate chain for domain
+  privacy_notice_title: Private data stays in this tab
+  privacy_notice_body: Your domain and PEM content are not uploaded, logged, or saved. The app uses no analytics or telemetry; only your language and theme preferences are stored locally. It checks PEM formatting, but does not cryptographically verify the certificate chain or key match.
+  theme_switch_to_light: Switch to light theme
+  theme_switch_to_dark: Switch to dark theme
   cert_item_required: This field is required to merge complete chain.
   cert_item_invalid: Please enter valid data.
   cert_item_filename: 'Filename:'
@@ -14,6 +18,8 @@ ui:
   footer:
     made_with: Made with
     made_by: and ❤️ by
+    author: Pavel Tkachev
+    handle: '@phoenixweiss'
 pages:
   home: Home
   about: About

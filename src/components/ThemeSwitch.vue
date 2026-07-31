@@ -3,35 +3,60 @@ import MoonIcon from '@/assets/svg/icons/MoonIcon.svg'
 import SunIcon from '@/assets/svg/icons/SunIcon.svg'
 import { ref, computed, onMounted } from 'vue'
 
+const THEME_STORAGE_KEY = 'ssl-chain-merger-theme'
+const LIGHT_THEME = 'light'
+const DARK_THEME = 'dark'
+
 const isDarkTheme = ref(false)
 
 const iconClass = computed(() => {
-  return isDarkTheme.value ? 'dark' : 'light'
+  return isDarkTheme.value ? DARK_THEME : LIGHT_THEME
 })
 
-const toggleTheme = () => {
-  const html = document.querySelector('html')
-  if (isDarkTheme.value) {
-    html.setAttribute('data-theme', 'light')
-  } else {
-    html.setAttribute('data-theme', 'dark')
-  }
-  isDarkTheme.value = !isDarkTheme.value
+const applyTheme = (theme) => {
+  document.documentElement.setAttribute('data-theme', theme)
+  isDarkTheme.value = theme === DARK_THEME
 }
 
-// Detect user's system theme preference
-onMounted(() => {
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  isDarkTheme.value = prefersDark
+const getStoredTheme = () => {
+  try {
+    const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY)
 
-  // Set the initial theme based on user's preference
-  const html = document.querySelector('html')
-  html.setAttribute('data-theme', prefersDark ? 'dark' : 'light')
+    return [LIGHT_THEME, DARK_THEME].includes(storedTheme) ? storedTheme : null
+  } catch {
+    return null
+  }
+}
+
+const storeTheme = (theme) => {
+  try {
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+  } catch {
+    // Keep theme switching available when browser storage is unavailable.
+  }
+}
+
+const toggleTheme = () => {
+  const nextTheme = isDarkTheme.value ? LIGHT_THEME : DARK_THEME
+  applyTheme(nextTheme)
+  storeTheme(nextTheme)
+}
+
+onMounted(() => {
+  const storedTheme = getStoredTheme()
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+  applyTheme(storedTheme || (prefersDark ? DARK_THEME : LIGHT_THEME))
 })
 </script>
 
 <template>
-  <button class="theme_switcher" @click="toggleTheme">
+  <button
+    class="theme_switcher"
+    @click="toggleTheme"
+    :aria-label="$t(isDarkTheme ? 'ui.theme_switch_to_light' : 'ui.theme_switch_to_dark')"
+    :title="$t(isDarkTheme ? 'ui.theme_switch_to_light' : 'ui.theme_switch_to_dark')"
+  >
     <SunIcon :class="iconClass" v-if="isDarkTheme" />
     <MoonIcon :class="iconClass" v-else />
   </button>

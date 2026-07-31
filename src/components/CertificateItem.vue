@@ -36,6 +36,10 @@ function validateCert() {
           :placeholder="$t(`certs.${cert.id}.placeholder`)"
           :required="cert.required"
           :aria-invalid="validateCert()"
+          autocomplete="off"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
         ></textarea>
         <small v-if="validateCert() === true">{{ $t('ui.cert_item_invalid') }}</small>
       </div>

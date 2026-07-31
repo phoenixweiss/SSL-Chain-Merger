@@ -9,6 +9,10 @@ const certs = store.certs
 <template>
   <main class="container">
     <h1>{{ $t('ui.main_header') }}</h1>
+    <aside class="privacy_notice" role="note">
+      <strong>{{ $t('ui.privacy_notice_title') }}</strong>
+      <span>{{ $t('ui.privacy_notice_body') }}</span>
+    </aside>
     <hr />
     <div class="row">
       <DomainNameField />
@@ -19,6 +23,20 @@ const certs = store.certs
 </template>
 
 <style lang="scss">
+.privacy_notice {
+  padding: 1rem;
+  border-left: 0.25rem solid var(--pico-primary);
+
+  strong,
+  span {
+    display: block;
+  }
+
+  strong {
+    margin-bottom: 0.25rem;
+  }
+}
+
 .row {
   display: flex;
   flex-direction: row;
