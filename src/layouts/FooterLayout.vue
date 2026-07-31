@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+const appVersion = import.meta.env.VITE_APP_VERSION
+</script>
 
 <template>
   <footer>
@@ -15,7 +17,15 @@
         <em>({{ $t('ui.footer.handle') }})</em>
       </a>
     </small>
+    <small class="app_version">
+      {{ $t('ui.footer.version', { version: appVersion }) }}
+    </small>
   </footer>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.app_version {
+  display: block;
+  margin-top: 0.5rem;
+}
+</style>

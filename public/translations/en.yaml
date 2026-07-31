@@ -20,6 +20,7 @@ ui:
     made_by: and ❤️ by
     author: Pavel Tkachev
     handle: '@phoenixweiss'
+    version: Version {{version}}
 pages:
   home: Home
   about: About

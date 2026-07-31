@@ -20,6 +20,7 @@ ui:
     made_by: и с ❤️ от
     author: Павла Ткачева
     handle: '@phoenixweiss'
+    version: Версия {{version}}
 pages:
   home: Главная
   about: О проекте
