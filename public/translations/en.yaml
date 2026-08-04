@@ -13,7 +13,7 @@ ui:
   cert_item_filename: 'Filename:'
   cert_item_format: Download in {{format}} format
   chain_download_button: Download full SSL chain
-  chain_merge_checkbox: Merge all certificates
+  chain_merge_checkbox: Merge the domain certificate, intermediates, and optional root
   chain_invalid_list: 'Please fill in the following fields correctly:'
   footer:
     made_with: Made with
@@ -32,13 +32,13 @@ certs:
       Enter domain certificate
       -----END CERTIFICATE-----
   cert_inter:
-    title: Intermediate certificate
+    title: Intermediate certificate(s)
     placeholder: |-
       -----BEGIN CERTIFICATE-----
-      Enter intermediate certificate
+      Enter one or more intermediate certificates in chain order
       -----END CERTIFICATE-----
   cert_root:
-    title: Root certificate
+    title: Root certificate (optional)
     placeholder: |-
       -----BEGIN CERTIFICATE-----
       Enter root certificate

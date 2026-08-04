@@ -23,24 +23,12 @@ async function downloadFullSSLChain() {
   const zip = new JSZip()
 
   if (mergeCertificates.value) {
-    // Create a single fullchain certificate
-    let fullChainContent = ''
-
-    const domainCert = store.certs.find((cert) => cert.id === 'cert_domain')
-    const intermediateCert = store.certs.find((cert) => cert.id === 'cert_inter')
-    const rootCert = store.certs.find((cert) => cert.id === 'cert_root')
-
-    if (domainCert && domainCert.content) {
-      fullChainContent += `${domainCert.content.trim()}\n`
-    }
-
-    if (intermediateCert && intermediateCert.content) {
-      fullChainContent += `${intermediateCert.content.trim()}\n`
-    }
-
-    if (rootCert && rootCert.content) {
-      fullChainContent += `${rootCert.content.trim()}\n`
-    }
+    // Keep certificate order explicit: domain, intermediate certificate(s), optional root.
+    const fullChainContent = `${store.certs
+      .filter((cert) => Number.isInteger(cert.chainOrder) && cert.content?.trim())
+      .sort((firstCert, secondCert) => firstCert.chainOrder - secondCert.chainOrder)
+      .map((cert) => cert.content.trim())
+      .join('\n')}\n`
 
     const fullChainFileName = `${store.domainName}.fullchain.crt`
     zip.file(fullChainFileName, fullChainContent)

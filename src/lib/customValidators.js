@@ -34,13 +34,35 @@ function isAriaInvalidDomainName(domain) {
  * Checks if a given text is a valid SSL certificate, CSR request or private key.
  *
  * @param {string} text - The text to check.
- * @param {string} [type='cert'] - The type of item to check. Possible values: 'cert', 'csr', 'key'.
+ * @param {string} [type='cert'] - The type of item to check. Possible values: 'cert', 'cert_chain', 'csr', 'key'.
  * @returns {boolean} - True if the text is valid, false otherwise.
  */
 function isValidCertItemText(text, type = 'cert') {
   let pattern
 
   switch (type) {
+    case 'cert_chain': {
+      const certificateBlockPattern =
+        /-----BEGIN CERTIFICATE-----\r?\n[\s\S]+?\r?\n-----END CERTIFICATE-----/g
+      const certificateBlocks = [...text.matchAll(certificateBlockPattern)]
+      let previousBlockEnd = 0
+
+      if (certificateBlocks.length === 0) {
+        return false
+      }
+
+      for (const certificateBlock of certificateBlocks) {
+        const separator = text.slice(previousBlockEnd, certificateBlock.index)
+
+        if (separator.trim() !== '') {
+          return false
+        }
+
+        previousBlockEnd = certificateBlock.index + certificateBlock[0].length
+      }
+
+      return text.slice(previousBlockEnd).trim() === ''
+    }
     case 'csr':
       pattern = /^-----BEGIN CERTIFICATE REQUEST-----\n[\s\S]+?\n-----END CERTIFICATE REQUEST-----$/
       break
@@ -60,7 +82,7 @@ function isValidCertItemText(text, type = 'cert') {
  * Checks if a given text is an invalid SSL certificate, CSR request or private key for ARIA-attributes.
  *
  * @param {string} text - The text to check.
- * @param {string} [type=null] - The type of item to check. Possible values: 'cert', 'csr', 'key'.
+ * @param {string} [type=null] - The type of item to check. Possible values: 'cert', 'cert_chain', 'csr', 'key'.
  * @returns {boolean|undefined} - True if the text is an invalid ARIA 'cert', 'csr' or 'key', false if it is a valid, undefined if the text is empty.
  */
 function isAriaInvalidCertContent(text, type = null) {

@@ -4,18 +4,21 @@
   name: domain
   format: crt
   required: true
+  chainOrder: 0
 - id: cert_inter
   content: null
-  type: cert
+  type: cert_chain
   name: intermediate
   format: crt
   required: false
+  chainOrder: 1
 - id: cert_root
   content: null
   type: cert
   name: root
   format: crt
-  required: true
+  required: false
+  chainOrder: 2
 - id: private_key
   content: null
   type: key

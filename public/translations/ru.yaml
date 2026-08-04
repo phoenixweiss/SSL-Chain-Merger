@@ -13,7 +13,7 @@ ui:
   cert_item_filename: 'Имя файла:'
   cert_item_format: Загрузить в формате {{format}}
   chain_download_button: Скачать полную цепочку SSL
-  chain_merge_checkbox: Объединить все сертификаты
+  chain_merge_checkbox: Объединить сертификат домена, промежуточные сертификаты и необязательный корневой
   chain_invalid_list: 'Пожалуйста, правильно заполните следующие поля:'
   footer:
     made_with: Сделано при помощи
@@ -34,15 +34,15 @@ certs:
   cert_inter:
     placeholder: |-
       -----BEGIN CERTIFICATE-----
-      Введите промежуточный сертификат
+      Введите один или несколько промежуточных сертификатов по порядку цепочки
       -----END CERTIFICATE-----
-    title: Промежуточный сертификат
+    title: Промежуточный сертификат (один или несколько)
   cert_root:
     placeholder: |-
       -----BEGIN CERTIFICATE-----
       Введите корневой сертификат
       -----END CERTIFICATE-----
-    title: Корневой сертификат
+    title: Корневой сертификат (необязательно)
   csr_code:
     placeholder: |-
       -----BEGIN CERTIFICATE REQUEST-----
