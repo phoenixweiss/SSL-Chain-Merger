@@ -71,11 +71,10 @@ yarn lint
 yarn format
 ```
 
-### Deploy project to [GitHub Pages](https://pages.github.com/)
+### Publish to [GitHub Pages](https://pages.github.com/)
 
-```sh
-yarn deploy
-```
+GitHub Actions publishes the production build from validated semantic version
+tags (`vMAJOR.MINOR.PATCH`). Local deployment is intentionally unavailable.
 
 ### List project structure using `tree`
 
