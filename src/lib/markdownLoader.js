@@ -1,5 +1,4 @@
 import { parseMarkdown } from '@/lib/markdownParser'
-import i18next from 'i18next'
 import { DEFAULT_LANGUAGE } from '@/constants'
 
 const warnInDevelopment = (...args) => {
@@ -13,10 +12,12 @@ const warnInDevelopment = (...args) => {
  * Tries to load the localized version first, and if not found, tries to load the universal file.
  * All filenames are converted to lowercase to avoid case-sensitivity issues.
  * @param {string} fileName - The base name of the markdown file to load
- * @returns {Promise<string>} - Returns the parsed markdown content or an error message.
+ * @param {string} [language=DEFAULT_LANGUAGE] - The selected interface language
+ * @returns {Promise<{html: string, headings: Array<{id: string, text: string, level: number}>}>}
+ * Returns the parsed Markdown content and its heading structure.
  */
-export const loadMarkdownContent = async (fileName) => {
-  const currentLanguage = i18next.language.toLowerCase()
+export const loadMarkdownContent = async (fileName, language = DEFAULT_LANGUAGE) => {
+  const currentLanguage = language.toLowerCase()
   const fileNameLower = fileName.toLowerCase()
 
   // Define file variants, prioritize language-specific files
@@ -57,5 +58,8 @@ export const loadMarkdownContent = async (fileName) => {
   }
 
   // If no file was found, return an error message
-  return 'Error: No content available for this page.'
+  return {
+    html: '<p>Error: No content available for this page.</p>',
+    headings: []
+  }
 }

@@ -7,7 +7,7 @@ const baseUrl = useBaseUrl()
 
 <template>
   <header>
-    <nav>
+    <nav class="header_navigation">
       <ul>
         <li>
           <a class="logo" :aria-label="APP_NAME" :href="baseUrl">{{ APP_NAME }}</a>
@@ -24,6 +24,9 @@ const baseUrl = useBaseUrl()
         </li>
         <li>
           <RouterLink to="/about">{{ $t('pages.about') }}</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/guide">{{ $t('pages.guide') }}</RouterLink>
         </li>
         <li>
           <ThemeSwitch />
@@ -45,7 +48,7 @@ a.logo {
   }
 }
 
-nav {
+.header_navigation {
   flex-direction: row;
 
   @media (max-width: 640px) {

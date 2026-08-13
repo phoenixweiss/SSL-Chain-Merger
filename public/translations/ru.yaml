@@ -24,6 +24,8 @@ ui:
 pages:
   home: Главная
   about: О проекте
+  guide: Ликбез
+  on_this_page: Содержание
 certs:
   cert_domain:
     placeholder: |-

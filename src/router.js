@@ -15,6 +15,11 @@ const routes = [
     component: () => import('@/views/MarkdownPage.vue')
   },
   {
+    path: '/guide',
+    component: () => import('@/views/MarkdownPage.vue'),
+    meta: { markdownFile: 'guide' }
+  },
+  {
     path: '/pages/:file?',
     component: () => import('@/views/MarkdownPage.vue')
   }
