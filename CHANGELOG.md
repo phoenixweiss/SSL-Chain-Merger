@@ -2,6 +2,22 @@
 
 All notable changes to SSL Chain Merger are documented in this file.
 
+## 0.0.5 - 2026-08-13
+
+### Added
+
+- Add an English and Russian plain-language guide to certificates, keys, CSRs, chains, common certificate types, and file formats.
+- Add an automatic heading-based contents column with nested levels, active-section highlighting, direct section links, and a collapsible mobile layout.
+
+### Fixed
+
+- Reload localized Markdown reliably when the interface language changes.
+- Keep the desktop contents column permanently expanded and remove unnecessary overflow on short pages.
+
+### Tests
+
+- Cover the guide route, localized contents, heading levels, section links, desktop placement, and mobile behavior.
+
 ## 0.0.4 - 2026-08-04
 
 ### Changed
