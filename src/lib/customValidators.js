@@ -31,51 +31,59 @@ function isAriaInvalidDomainName(domain) {
 }
 
 /**
- * Checks if a given text is a valid SSL certificate, CSR request or private key.
+ * Checks PEM boundaries for a certificate, CSR or private key, without parsing its payload.
  *
  * @param {string} text - The text to check.
  * @param {string} [type='cert'] - The type of item to check. Possible values: 'cert', 'cert_chain', 'csr', 'key'.
- * @returns {boolean} - True if the text is valid, false otherwise.
+ * @returns {boolean} - True if the PEM wrappers are supported and complete, false otherwise.
  */
 function isValidCertItemText(text, type = 'cert') {
-  let pattern
-
-  switch (type) {
-    case 'cert_chain': {
-      const certificateBlockPattern =
-        /-----BEGIN CERTIFICATE-----\r?\n[\s\S]+?\r?\n-----END CERTIFICATE-----/g
-      const certificateBlocks = [...text.matchAll(certificateBlockPattern)]
-      let previousBlockEnd = 0
-
-      if (certificateBlocks.length === 0) {
-        return false
-      }
-
-      for (const certificateBlock of certificateBlocks) {
-        const separator = text.slice(previousBlockEnd, certificateBlock.index)
-
-        if (separator.trim() !== '') {
-          return false
-        }
-
-        previousBlockEnd = certificateBlock.index + certificateBlock[0].length
-      }
-
-      return text.slice(previousBlockEnd).trim() === ''
-    }
-    case 'csr':
-      pattern = /^-----BEGIN CERTIFICATE REQUEST-----\n[\s\S]+?\n-----END CERTIFICATE REQUEST-----$/
-      break
-    case 'key':
-      pattern = /^-----BEGIN RSA PRIVATE KEY-----\n[\s\S]+?\n-----END RSA PRIVATE KEY-----$/
-      break
-    case 'cert':
-    default:
-      pattern = /^-----BEGIN CERTIFICATE-----\n[\s\S]+?\n-----END CERTIFICATE-----$/
-      break
+  if (typeof text !== 'string' || !text.trim()) {
+    return false
   }
 
-  return pattern.test(text)
+  const labels =
+    type === 'key'
+      ? ['RSA PRIVATE KEY', 'PRIVATE KEY', 'ENCRYPTED PRIVATE KEY', 'EC PRIVATE KEY']
+      : type === 'csr'
+        ? ['CERTIFICATE REQUEST', 'NEW CERTIFICATE REQUEST']
+        : ['CERTIFICATE']
+  // Inspect a copy only: downloads retain the content stored by the form.
+  const lines = text.trim().split(/\r?\n/)
+  let blockCount = 0
+  let index = 0
+
+  while (index < lines.length) {
+    if (!lines[index].trim()) {
+      index += 1
+      continue
+    }
+
+    const label = labels.find((label) => lines[index] === `-----BEGIN ${label}-----`)
+    if (!label || (blockCount > 0 && type !== 'cert_chain')) {
+      return false
+    }
+
+    index += 1
+    let hasContent = false
+    while (index < lines.length && lines[index] !== `-----END ${label}-----`) {
+      // Reject nested or mismatched boundaries without claiming DER validation.
+      if (/-----(?:BEGIN|END) /.test(lines[index]) || lines[index].includes('\r')) {
+        return false
+      }
+      hasContent ||= Boolean(lines[index].trim())
+      index += 1
+    }
+
+    if (!hasContent || index === lines.length) {
+      return false
+    }
+
+    blockCount += 1
+    index += 1
+  }
+
+  return blockCount > 0
 }
 
 /**

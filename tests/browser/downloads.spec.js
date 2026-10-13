@@ -173,3 +173,56 @@ test('builds a fullchain with multiple intermediates and no root certificate', a
     `${domainCertificate}\n${intermediates}\n`
   )
 })
+
+for (const label of ['PRIVATE KEY', 'ENCRYPTED PRIVATE KEY', 'EC PRIVATE KEY']) {
+  test(`downloads ${label} and legacy CSR markers without changing form content`, async ({
+    page
+  }) => {
+    await fillCertificateForm(page, {
+      intermediates: `${firstIntermediateCertificate}\n\n${secondIntermediateCertificate}\n`,
+      root: `${rootCertificate}\n`,
+      csr: certificateRequest.replaceAll('CERTIFICATE REQUEST', 'NEW CERTIFICATE REQUEST') + '\n'
+    })
+    // Textareas normalize pasted CRLF to LF; compare downloads with the actual form value.
+    await page.locator('#cert_domain').fill(domainCertificate.replaceAll('\n', '\r\n') + '\r\n')
+    await page.locator('#private_key').fill(privateKey.replaceAll('RSA PRIVATE KEY', label) + '\n')
+    const key = await page.locator('#private_key').inputValue()
+    const csr = await page.locator('#csr_code').inputValue()
+    const leaf = await page.locator('#cert_domain').inputValue()
+    const intermediates = await page.locator('#cert_inter').inputValue()
+    await expect(page.locator('#private_key')).toHaveAttribute('aria-invalid', 'false')
+    await expectItemDownload(page, {
+      id: 'private_key',
+      buttonName: 'Download in key format',
+      filename: 'example.test.private.key',
+      content: key
+    })
+    await expectItemDownload(page, {
+      id: 'csr_code',
+      buttonName: 'Download in csr format',
+      filename: 'example.test.request.csr',
+      content: csr
+    })
+    await expectItemDownload(page, {
+      id: 'cert_domain',
+      buttonName: 'Download in crt format',
+      filename: 'example.test.domain.crt',
+      content: leaf
+    })
+    const separate = await downloadZip(page)
+    expect(await separate.file('example.test.domain.crt').async('string')).toBe(leaf)
+    expect(await separate.file('example.test.private.key').async('string')).toBe(key)
+    expect(await separate.file('example.test.request.csr').async('string')).toBe(csr)
+    expect(await separate.file('example.test.intermediate.crt').async('string')).toBe(intermediates)
+    await page.getByRole('checkbox').check()
+    const merged = await downloadZip(page)
+    expect(await merged.file('example.test.fullchain.crt').async('string')).toBe(
+      `${leaf.trim()}\n${intermediates.trim()}\n${rootCertificate}\n`
+    )
+    expect(await merged.file('example.test.private.key').async('string')).toBe(key)
+    expect(await merged.file('example.test.request.csr').async('string')).toBe(csr)
+    await page.locator('#private_key').fill(key.replace(`END ${label}`, 'END RSA PRIVATE KEY'))
+    await expect(page.locator('#private_key')).toHaveAttribute('aria-invalid', 'true')
+    await expect(page.getByRole('button', { name: 'Download full SSL chain' })).toBeDisabled()
+  })
+}
