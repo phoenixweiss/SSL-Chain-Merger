@@ -2,6 +2,19 @@
 
 All notable changes to SSL Chain Merger are documented in this file.
 
+## 0.0.6 - 2026-10-14
+
+### Changed
+
+- Accept PKCS#8, encrypted PKCS#8, and EC private key wrappers alongside existing RSA keys, and support the legacy CSR request label.
+- Accept LF and CRLF line endings, surrounding whitespace, and a final newline while rejecting mismatched, nested, empty, and incomplete PEM blocks.
+- Document supported PEM wrappers and line-ending behavior in English and Russian while preserving existing download filenames and fullchain ordering.
+
+### Tests
+
+- Add unit coverage for supported PEM wrappers and invalid boundaries.
+- Cover new key and CSR downloads in individual files and both ZIP modes alongside the existing download, privacy, localization, and routing scenarios.
+
 ## 0.0.5 - 2026-08-13
 
 ### Added
