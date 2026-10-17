@@ -1,8 +1,10 @@
 <script setup>
 import { downloadFile } from '@/lib/fileHandlingFunctions'
 import { useGlobalStore } from '@/stores/global'
+import { ref } from 'vue'
 
 const store = useGlobalStore()
+const downloadFailed = ref(false)
 
 const props = defineProps({
   cert: {
@@ -16,6 +18,21 @@ function validateCert() {
     store.getCertById(props.cert.id).content,
     props.cert.type
   )
+}
+
+function downloadCertificate() {
+  downloadFailed.value = false
+  if (validateCert() !== false) return
+
+  try {
+    downloadFile(
+      store.getCertById(props.cert.id).content,
+      `${store.domainName}.${props.cert.name}`,
+      props.cert.format
+    )
+  } catch {
+    downloadFailed.value = true
+  }
 }
 </script>
 
@@ -45,17 +62,12 @@ function validateCert() {
       </div>
       <div class="cert_download">
         <button
-          @click="
-            downloadFile(
-              store.getCertById(cert.id).content,
-              `${store.domainName}.${cert.name}`,
-              cert.format
-            )
-          "
+          @click="downloadCertificate"
           :disabled="validateCert() === true || validateCert() === undefined"
         >
           {{ $t('ui.cert_item_format', { format: cert.format }) }}
         </button>
+        <p v-if="downloadFailed" role="alert">{{ $t('ui.download_failed') }}</p>
         <div class="caption" v-if="validateCert() === false">
           {{ $t('ui.cert_item_filename') }}
           <br />

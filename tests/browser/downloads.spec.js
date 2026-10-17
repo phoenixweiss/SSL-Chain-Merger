@@ -43,6 +43,24 @@ async function fillCertificateForm(page, { intermediates, root, csr }) {
   }
 }
 
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    window.downloadBlobs = []
+    window.releasedDownloadUrls = []
+    const create = URL.createObjectURL.bind(URL)
+    const revoke = URL.revokeObjectURL.bind(URL)
+    URL.createObjectURL = (blob) => {
+      const url = create(blob)
+      window.downloadBlobs.push({ type: blob.type, url })
+      return url
+    }
+    URL.revokeObjectURL = (url) => {
+      window.releasedDownloadUrls.push(url)
+      revoke(url)
+    }
+  })
+})
+
 async function downloadZip(page) {
   const downloadPromise = page.waitForEvent('download')
   await page.getByRole('button', { name: 'Download full SSL chain' }).click()
@@ -50,6 +68,7 @@ async function downloadZip(page) {
   const downloadPath = await download.path()
 
   expect(download.suggestedFilename()).toBe('example_test_ssl_chain.zip')
+  expect(await page.evaluate(() => window.downloadBlobs.at(-1).type)).toBe('application/zip')
 
   return JSZip.loadAsync(await readFile(downloadPath))
 }
@@ -64,7 +83,66 @@ async function expectItemDownload(page, { id, buttonName, filename, content }) {
   const downloadPath = await download.path()
 
   expect(download.suggestedFilename()).toBe(filename)
-  expect(await readFile(downloadPath, 'utf8')).toBe(content)
+  expect(await readFile(downloadPath)).toEqual(Buffer.from(content, 'utf8'))
+  expect(await page.evaluate(() => window.downloadBlobs.at(-1).type)).toBe('application/x-pem-file')
+}
+
+test('releases every download URL after the browser has consumed it', async ({ page }) => {
+  await fillCertificateForm(page, { intermediates: firstIntermediateCertificate })
+  await downloadZip(page)
+  await expect.poll(() => page.evaluate(() => window.releasedDownloadUrls.length)).toBe(1)
+  expect(
+    await page.evaluate(() => window.releasedDownloadUrls[0] === window.downloadBlobs[0].url)
+  ).toBe(true)
+  await expect(page.locator('a[download]')).toHaveCount(0)
+})
+
+for (const failure of ['zip', 'archive download', 'individual download']) {
+  test(`recovers from ${failure} errors without losing input`, async ({ page }) => {
+    if (failure === 'individual download') await page.setViewportSize({ width: 390, height: 844 })
+    await fillCertificateForm(page, { intermediates: firstIntermediateCertificate })
+    const errors = []
+    page.on('pageerror', (error) => errors.push(error.message))
+    await page.evaluate((failure) => {
+      if (failure === 'zip') {
+        const OriginalBlob = window.Blob
+        window.Blob = new Proxy(OriginalBlob, {
+          construct() {
+            window.Blob = OriginalBlob
+            throw new Error('Synthetic ZIP failure')
+          }
+        })
+      } else {
+        const create = URL.createObjectURL
+        URL.createObjectURL = () => {
+          URL.createObjectURL = create
+          throw new Error('Synthetic download failure')
+        }
+      }
+    }, failure)
+    const target =
+      failure === 'individual download'
+        ? page.locator('.cert_item').filter({ has: page.locator('#private_key') })
+        : page.locator('.chain_download')
+    const button = target.getByRole('button')
+    await button.click()
+    await expect(target.getByRole('alert')).toContainText('Could not prepare the download')
+    if (failure === 'zip') {
+      await page.locator('summary').click()
+      await page.getByRole('link', { name: 'RU', exact: true }).click()
+      await page.locator('summary').click()
+      await expect(target.getByRole('alert')).toContainText('Не удалось подготовить скачивание')
+    }
+    await expect(button).toBeEnabled()
+    await expect(page.locator('#private_key')).toHaveValue(privateKey)
+    await expect(page.locator('#cert_domain')).toHaveValue(domainCertificate)
+    const pending = page.waitForEvent('download')
+    await button.click()
+    const download = await pending
+    expect(await download.failure()).toBeNull()
+    await expect(target.getByRole('alert')).toHaveCount(0)
+    expect(errors).toEqual([])
+  })
 }
 
 test('preserves individual component downloads and filenames', async ({ page }) => {

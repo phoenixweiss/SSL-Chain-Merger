@@ -13,6 +13,7 @@ ui:
   cert_item_filename: 'Filename:'
   cert_item_format: Download in {{format}} format
   chain_download_button: Download full SSL chain
+  download_failed: Could not prepare the download. Please try again. Your input is still available in this tab.
   chain_merge_checkbox: Merge the domain certificate, intermediates, and optional root
   chain_invalid_list: 'Please fill in the following fields correctly:'
   footer:

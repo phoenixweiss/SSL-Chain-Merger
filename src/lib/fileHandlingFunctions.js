@@ -6,13 +6,28 @@
  * @param {string} fileExt - The extension of the file to be downloaded.
  */
 function downloadFile(content, fileName, fileExt) {
-  const blob = new Blob([content], { type: 'text/plain' })
+  const mimeType = fileExt === 'zip' ? 'application/zip' : 'application/x-pem-file'
+  const blob = content instanceof Blob ? content : new Blob([content], { type: mimeType })
   const url = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.href = url
-  link.download = `${fileName}.${fileExt}`
-  link.click()
-  URL.revokeObjectURL(url)
+  let link
+  let started = false
+
+  try {
+    link = document.createElement('a')
+    link.href = url
+    link.download = `${fileName}.${fileExt}`
+    document.body.appendChild(link)
+    link.click()
+    started = true
+  } finally {
+    link?.remove()
+    // Give the browser time to consume the URL before releasing its Blob.
+    if (started) {
+      setTimeout(() => URL.revokeObjectURL(url), 1000)
+    } else {
+      URL.revokeObjectURL(url)
+    }
+  }
 }
 
 export { downloadFile }
