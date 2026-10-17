@@ -2,6 +2,19 @@
 
 All notable changes to SSL Chain Merger are documented in this file.
 
+## 0.0.7 - 2026-10-18
+
+### Fixed
+
+- Preserve existing ZIP Blobs and use explicit PEM and ZIP media types without changing file contents, filenames, or fullchain ordering.
+- Release temporary download URLs after dispatch and clean up links and URLs when preparation fails.
+- Show localized download errors, preserve form input for retries, and prevent duplicate ZIP generation while a download is being prepared.
+
+### Tests
+
+- Verify PEM bytes, ZIP Blob identity, media types, and cleanup on success and failure.
+- Cover recovery from ZIP generation and download preparation failures, including Russian messages and mobile layout, alongside existing download and privacy scenarios.
+
 ## 0.0.6 - 2026-10-14
 
 ### Changed
