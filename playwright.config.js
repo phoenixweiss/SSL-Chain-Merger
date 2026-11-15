@@ -1,6 +1,6 @@
 import { defineConfig } from '@playwright/test'
 
-const appUrl = 'http://127.0.0.1:4173/SSL-Chain-Merger/'
+const appUrl = 'http://127.0.0.1:4173/'
 
 export default defineConfig({
   testDir: './tests/browser',

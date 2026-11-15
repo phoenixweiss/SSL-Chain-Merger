@@ -18,8 +18,8 @@ const appVersion = readFileSync(new URL('./VERSION', import.meta.url), 'utf8').t
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // Repo name
-  base: '/SSL-Chain-Merger/',
+  // The custom-domain GitHub Pages site is served at the origin root.
+  base: '/',
   define: {
     'import.meta.env.VITE_APP_VERSION': JSON.stringify(appVersion)
   },
