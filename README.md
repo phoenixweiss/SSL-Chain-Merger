@@ -2,7 +2,7 @@
 
 **SSL Chain Merger** is a browser-based tool for packaging PEM-encoded certificate components into individual `crt`, `csr`, and `key` files or a downloadable ZIP archive. Paste the required text into the matching fields and download the files for your server configuration.
 
-[Try online](https://phoenixweiss.github.io/SSL-Chain-Merger/)
+[Try online](https://ssl.phoenixweiss.me/)
 
 ---
 
