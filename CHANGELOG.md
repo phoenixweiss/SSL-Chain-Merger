@@ -2,6 +2,18 @@
 
 All notable changes to SSL Chain Merger are documented in this file.
 
+## 0.0.8 - 2026-11-16
+
+### Changed
+
+- Serve the site at `https://ssl.phoenixweiss.me/` with assets and localized content loaded from the domain root.
+- Add canonical and social sharing metadata and set the web manifest start URL and scope to the site root.
+- Preserve hash-based page and guide-section links, client-side PEM processing, and existing download formats.
+
+### Tests
+
+- Cover root navigation, direct guide links, icons, manifest resources, individual PEM downloads, and both ZIP modes on desktop and mobile.
+
 ## 0.0.7 - 2026-10-18
 
 ### Fixed
